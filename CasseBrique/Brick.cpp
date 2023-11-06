@@ -1,4 +1,5 @@
 #include "Brick.h"
+#include "Ball.h"
 
 Brick::Brick(float x, float y, float width, float height) : GameObject(x, y, width, height)
 {

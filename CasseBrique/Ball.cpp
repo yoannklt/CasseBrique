@@ -10,8 +10,8 @@ Ball::~Ball()
 	delete this->circle;
 }
 
-void Ball::updateShape()
+void Ball::updateShape(int x, int y)
 {
-	this->circle->setPosition(position[0], position[1]);
+	this->circle->setPosition(position[0] - x, position[1] - y);
 }
 

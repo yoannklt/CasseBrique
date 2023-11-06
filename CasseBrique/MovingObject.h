@@ -12,6 +12,6 @@ public:
 
 private:
 	float direction[2] = { 1.0f, 0.0f };
-	int speed = 5;
+	int speed = 0;
 };
 

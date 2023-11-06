@@ -4,11 +4,12 @@
 
 int main(int argc, char* argv[])
 {
+    sf::Mouse mouse;
     //Création d'une fenêtre
     sf::RenderWindow oWindow(sf::VideoMode(640, 480), "SFML");
 
     //Création d'un cercle de radius 100
-    Ball oCircle(50.0f, 50.0f, 20.0f);
+    Ball oCircle(320.0f, 460.0f, 10.0f);
     sf::CircleShape* circle = oCircle.getShape();
     //A la position 0, 0
     circle->setPosition(0.f, 0.f);
@@ -23,14 +24,17 @@ int main(int argc, char* argv[])
     //Et de couleur rouge
     oRectangle.setFillColor(sf::Color::Red);
 
+
+    
+
     sf::Clock clock; 
     oWindow.setFramerateLimit(60);
 
     //GameLoop
     while (oWindow.isOpen())
     {
-
-        sf::Time deltaTime = clock.getElapsedTime(); 
+        sf::Vector2i mousePos = mouse.getPosition(oWindow);  
+        sf::Time deltaTime = clock.getElapsedTime();  
         clock.restart();     
 
         //EVENT
@@ -43,8 +47,8 @@ int main(int argc, char* argv[])
 
         //UPDATE
         oCircle.update(deltaTime.asSeconds());
-        oCircle.updateShape();
-        std::cout << deltaTime.asSeconds() << std::endl;
+        oCircle.updateShape(mousePos.x, mousePos.y);
+        std::cout << "X: " << mousePos.x << " Y:" << mousePos.y << std::endl;
         //DRAW
         oWindow.clear();
 
