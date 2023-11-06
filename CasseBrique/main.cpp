@@ -1,4 +1,5 @@
 #include <SFML/Graphics.hpp>
+#include <iostream>
 #include "Ball.h"
 
 int main(int argc, char* argv[])
@@ -22,9 +23,15 @@ int main(int argc, char* argv[])
     //Et de couleur rouge
     oRectangle.setFillColor(sf::Color::Red);
 
+    sf::Clock clock; 
+
     //GameLoop
     while (oWindow.isOpen())
     {
+
+        sf::Time deltaTime = clock.getElapsedTime(); 
+        clock.restart();     
+
         //EVENT
         sf::Event oEvent;
         while (oWindow.pollEvent(oEvent))
@@ -34,7 +41,9 @@ int main(int argc, char* argv[])
         }
 
         //UPDATE
-
+        oCircle.update(deltaTime.asSeconds());
+        oCircle.updateShape();
+        std::cout << deltaTime.asSeconds() << std::endl;
         //DRAW
         oWindow.clear();
 

@@ -1,7 +1,7 @@
 #pragma once
 #include "GameObject.h"
 
-class MovingObject : GameObject
+class MovingObject : public GameObject
 {
 public:
 	MovingObject(float x, float y, float width, float height);
@@ -9,8 +9,9 @@ public:
 
 	void update(float deltaTime) override;
 
+
 private:
-	float direction[2] = { 0.0f, 0.0f };
-	int speed = 0;
+	float direction[2] = { 1.0f, 0.0f };
+	int speed = 5;
 };
 

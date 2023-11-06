@@ -9,3 +9,9 @@ Ball::~Ball()
 {
 	delete this->circle;
 }
+
+void Ball::updateShape()
+{
+	this->circle->setPosition(position[0], position[1]);
+}
+
