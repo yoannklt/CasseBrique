@@ -24,6 +24,7 @@ int main(int argc, char* argv[])
     oRectangle.setFillColor(sf::Color::Red);
 
     sf::Clock clock; 
+    oWindow.setFramerateLimit(60);
 
     //GameLoop
     while (oWindow.isOpen())
