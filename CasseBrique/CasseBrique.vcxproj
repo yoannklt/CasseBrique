@@ -133,11 +133,13 @@
     <ClCompile Include="src\core\BrickBreakerManager.cpp" />
     <ClCompile Include="src\engine\events\EventsManager.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\engine\rendering\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\core\BrickBreakerManager.h" />
     <ClInclude Include="src\engine\events\EventsManager.h" />
     <ClInclude Include="src\core\AbstractGameManager.h" />
+    <ClInclude Include="src\engine\rendering\Window.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

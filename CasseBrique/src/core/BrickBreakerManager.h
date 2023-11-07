@@ -4,5 +4,7 @@
 
 class BrickBreakerManager : public AbstractGameManager
 {
+
+	void render() override;
 };
 
