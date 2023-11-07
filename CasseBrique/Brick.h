@@ -10,6 +10,8 @@ public:
 	~Brick();
 
 	inline sf::RectangleShape* getShape() { return rectangle; };
+	void updateShape(int x, int y);
+
 
 private:
 	sf::RectangleShape* rectangle;

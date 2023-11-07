@@ -10,8 +10,12 @@ public:
 	~Ball();
 
 	inline sf::CircleShape* getShape() { return circle; };
+	 
+	void bounce();
 
-	void updateShape(int x, int y); 
+	void update(float deltaTime) override;
+	void updateShape(); 
+
 
 private:
 	sf::CircleShape* circle;

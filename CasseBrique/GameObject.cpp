@@ -42,3 +42,9 @@ float GameObject::getWidth() {
 float GameObject::getHeight() {
 	return this->size[1];
 }
+
+float GameObject::convertRadiansToDegrees(float radianAngle)
+{
+	float degreeAngle = radianAngle * 180 / 3.14;
+	return degreeAngle;
+}

@@ -9,6 +9,7 @@ public:
 	virtual void update(float deltaTime) {};
 
 	void setPosition(float xpos, float ypos);
+	float convertRadiansToDegrees(float radianAngle);
 	float* getPosition();
 	float getX();
 	float getY();
