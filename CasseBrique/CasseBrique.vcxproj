@@ -130,13 +130,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\GameManager.cpp" />
-    <ClCompile Include="src\engine\events\SFMLEventsManager.cpp" />
+    <ClCompile Include="src\core\BrickBreakerManager.cpp" />
+    <ClCompile Include="src\engine\events\EventsManager.cpp" />
     <ClCompile Include="src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\engine\events\SFMLEventsManager.h" />
-    <ClInclude Include="src\GameManager.h" />
+    <ClInclude Include="src\core\BrickBreakerManager.h" />
+    <ClInclude Include="src\engine\events\EventsManager.h" />
+    <ClInclude Include="src\core\AbstractGameManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
