@@ -18,7 +18,7 @@ int main(int argc, char** argv)
     //A la position 100, 100
     oCircle.setPosition(100.f, 100.f);
     //Et de couleur rouge
-    oRectangle.setFillColor(sf::Color::Red);
+    oRectangle.setFillColor(sf::Color::Blue);
 
     //GameLoop
     while (oWindow.isOpen())
