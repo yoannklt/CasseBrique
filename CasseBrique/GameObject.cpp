@@ -18,3 +18,9 @@ void GameObject::setPosition(float xpos, float ypos)
 	this->position[0] = xpos;
 	this->position[1] = ypos;
 }
+
+float GameObject::convertRadiansToDegrees(float radianAngle)
+{
+	float degreeAngle = radianAngle * 180 / 3.14;
+	return degreeAngle;
+}

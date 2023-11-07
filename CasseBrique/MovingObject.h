@@ -7,11 +7,10 @@ public:
 	MovingObject(float x, float y, float width, float height);
 	~MovingObject();
 
-	void update(float deltaTime) override;
-
+	virtual void update(float deltaTime) override;
 
 private:
 	float direction[2] = { 1.0f, 0.0f };
-	int speed = 0;
+	int speed = 100;
 };
 

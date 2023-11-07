@@ -1,8 +1,10 @@
 #include "Ball.h"
 
+
 Ball::Ball(float x, float y, float radius) : MovingObject(x, y, radius, radius)
 {
 	this->circle = new sf::CircleShape(radius);
+	this->circle->setPosition(x, y);
 }
 
 Ball::~Ball()
@@ -10,8 +12,20 @@ Ball::~Ball()
 	delete this->circle;
 }
 
-void Ball::updateShape(int x, int y)
+
+void Ball::bounce()
 {
-	this->circle->setPosition(position[0] - x, position[1] - y);
+
+}
+
+void Ball::update(float deltaTime)
+{
+	MovingObject::update(deltaTime); 
+	this->circle->setFillColor(sf::Color::White);
+}
+
+void Ball::updateShape()
+{
+	this->circle->setPosition(position[0], position[1]);
 }
 
