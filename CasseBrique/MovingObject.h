@@ -1,5 +1,6 @@
 #pragma once
 #include "GameObject.h"
+#include <SFML/Graphics.hpp>
 
 class MovingObject : public GameObject
 {
@@ -8,8 +9,9 @@ public:
 	~MovingObject();
 
 	void update(float deltaTime) override;
+	bool checkAABBCollision(GameObject* object);
 
-
+	sf::RectangleShape* rectangle;
 private:
 	float direction[2] = { 1.0f, 0.0f };
 	int speed = 0;

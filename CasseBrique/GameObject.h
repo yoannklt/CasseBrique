@@ -9,6 +9,15 @@ public:
 	virtual void update(float deltaTime) {};
 
 	void setPosition(float xpos, float ypos);
+	float* getPosition();
+	float getX();
+	float getY();
+	float getXMax();
+	float getYMax();
+	float getWidth();
+	float getHeight();
+
+
 
 protected:
 	float position[2] = { 0.0f, 0.0f };

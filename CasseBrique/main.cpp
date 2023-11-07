@@ -25,8 +25,6 @@ int main(int argc, char* argv[])
     oRectangle.setFillColor(sf::Color::Red);
 
 
-    
-
     sf::Clock clock; 
     oWindow.setFramerateLimit(60);
 
@@ -48,10 +46,9 @@ int main(int argc, char* argv[])
         //UPDATE
         oCircle.update(deltaTime.asSeconds());
         oCircle.updateShape(mousePos.x, mousePos.y);
-        std::cout << "X: " << mousePos.x << " Y:" << mousePos.y << std::endl;
+        //std::cout << "X: " << mousePos.x << " Y:" << mousePos.y << std::endl;
         //DRAW
         oWindow.clear();
-
         oWindow.draw(*circle); 
         oWindow.draw(oRectangle);
 
