@@ -66,43 +66,19 @@ typedef enum KeyNames {
 typedef enum EventCallbackReturns {
 	SUCCESS = 0,
 	FAILURE,
-	BREAK,
+	STOP_PROPAGATE,
 	EVENT_CALLBACK_RETURNS_AMOUNT
 } EventCallbackReturn;
 
-using EventCallback = int(*)(const Event&); 
-
-struct Event
-{
-	EventType eventType;
-	EventName eventName;
-};
-
-struct KeyEvent : virtual public Event
-{
-	KeyName keyName;
-};
-
-struct MouseEvent : virtual public Event
-{
-	int x;
-	int y;
-};
-
-struct MouseClickEvent : public KeyEvent, public MouseEvent
-{
-};
-
+using EventCallback = int(*)(); 
 
 class EventsManager
 {
-
 public:
 	void subscribe(EventName eventName, EventCallback);
 	void unsubscribe(EventName eventName, EventCallback);
-	void trigger(EventName eventName, Event event);
+	void trigger(EventType eventType, EventName eventName);
 
 private:
 	std::unordered_map<EventType, std::vector<EventCallback>> eventCallbacksMap;
 };
-
