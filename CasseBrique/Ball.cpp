@@ -12,6 +12,6 @@ Ball::~Ball()
 
 void Ball::updateShape(int x, int y)
 {
-	this->circle->setPosition(position[0] - x, position[1] - y);
+	this->circle->setPosition(x, y);
 }
 
