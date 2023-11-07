@@ -12,8 +12,10 @@ public:
 	bool checkAABBCollision(GameObject* object);
 
 	sf::RectangleShape* rectangle;
+protected:
+	float direction[2] = { 1.0f, 0.1f };
+
 private:
-	float direction[2] = { 1.0f, 0.0f };
-	int speed = 100;
+	int speed = 150;
 };
 

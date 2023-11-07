@@ -3,6 +3,7 @@
 #include "Ball.h"
 #include "Brick.h"
 
+
 int main(int argc, char* argv[])
 {
     sf::Mouse mouse;
@@ -10,8 +11,9 @@ int main(int argc, char* argv[])
     //Création d'une fenêtre
     sf::RenderWindow oWindow(sf::VideoMode(640, 480), "SFML");
 
+
     //Création d'un cercle de radius 10
-    Ball oCircle(0.0f, 0.0f, 10.0f);
+    Ball oCircle(320.0f, 0.0f, 10.0f);
 
     sf::CircleShape* circle = oCircle.getShape();
 

@@ -11,11 +11,10 @@ public:
 
 	inline sf::CircleShape* getShape() { return circle; };
 	 
-	void bounce();
+	void bounce(int side);
 
 	void update(float deltaTime) override;
 	void updateShape(); 
-
 
 private:
 	sf::CircleShape* circle;
