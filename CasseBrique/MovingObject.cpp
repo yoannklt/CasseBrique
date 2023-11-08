@@ -3,18 +3,18 @@
 
 MovingObject::MovingObject(float x, float y, float width, float height) : GameObject( x, y, width,height)
 {
-	this->rectangle = new sf::RectangleShape(sf::Vector2f(width, height));
-	this->rectangle->setPosition(x, y);
+	
 }
 
 MovingObject::~MovingObject()
 {
+	
 }
 
 void MovingObject::update(float deltaTime)
 {
-	this->position[0] += this->direction[0] * this->speed * deltaTime;
-	this->position[1] += this->direction[1] * this->speed * deltaTime;
+	this->position.x += this->direction.x * this->speed * deltaTime;
+	this->position.y += this->direction.y * this->speed * deltaTime;
 
 }
 
@@ -40,4 +40,10 @@ bool MovingObject::checkAABBCollision(GameObject* object)
 		return true;
 	}
 	return false;
+}
+
+void MovingObject::setDirection(float x, float y)
+{
+	direction.x = x;
+	direction.y = y;
 }

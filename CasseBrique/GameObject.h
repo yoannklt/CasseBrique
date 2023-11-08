@@ -1,28 +1,35 @@
 #pragma once
 
+#include <SFML/Graphics.hpp>
+
 class GameObject
 {
 public:
+	// CONSTRUCTORS / DESTRUCTORS
 	GameObject(float x, float y, float width, float height);
 	~GameObject();
 
-	virtual void update(float deltaTime) {};
-
-	void setPosition(float xpos, float ypos);
-	float convertRadiansToDegrees(float radianAngle);
-	float* getPosition();
+	// POSITION RELATED FUNCTIONS
+	sf::Vector2f getPosition();
 	float getX();
 	float getY();
 	float getXMax();
 	float getYMax();
 	float getWidth();
 	float getHeight();
+	void setPosition(float xpos, float ypos);
+
+	// DIRECTLY OBJECT RELATED FUNCTIONS
+	virtual void update(float deltaTime) {};
 
 
+	// MATHS FUNCTIONS 
+	sf::Vector2f normalizeVect(float x, float y);
+	float convertRadiansToDegrees(float radianAngle);
 
 protected:
-	float position[2] = { 0.0f, 0.0f };
-	float size[2];
+	sf::Vector2f position = { 0.0f, 0.0f };
+	sf::Vector2f size;
 
 private:
 };

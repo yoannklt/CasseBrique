@@ -1,6 +1,5 @@
 #pragma once
 
-#include "SFML/Graphics.hpp"
 #include "GameObject.h"
 
 class Brick : GameObject
@@ -10,11 +9,8 @@ public:
 	~Brick();
 
 	inline sf::RectangleShape* getShape() { return rectangle; };
-	void updateShape(int x, int y);
-
 
 private:
 	sf::RectangleShape* rectangle;
-	
 };
 

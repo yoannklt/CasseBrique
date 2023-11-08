@@ -6,15 +6,17 @@
 class Ball : public MovingObject
 {
 public:
+	// CONSTRUCTORS / DESTRUCTORS
 	Ball(float x, float y, float radius);
 	~Ball();
 
-	inline sf::CircleShape* getShape() { return circle; };
-	 
-	void bounce(int side);
-
+	// DIRECTLY OBJECT RELATED FUNCTIONS
 	void update(float deltaTime) override;
 	void updateShape(); 
+	void bounce(int side);
+
+	// SHAPE RELATED FUNCTIONS 
+	inline sf::CircleShape* getShape() { return circle; };
 
 private:
 	sf::CircleShape* circle;

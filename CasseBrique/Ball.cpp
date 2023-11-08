@@ -6,6 +6,8 @@ Ball::Ball(float x, float y, float radius) : MovingObject(x, y, radius, radius)
 {
 	this->circle = new sf::CircleShape(radius);
 	this->circle->setPosition(x, y);
+	this->circle->setOrigin(radius, radius);
+	size.x;
 }
 
 Ball::~Ball()
@@ -16,27 +18,30 @@ Ball::~Ball()
 
 void Ball::bounce(int side)
 {
-	this->direction[side] = -direction[side];
+	float directionTab[2] = { direction.x, direction.y };
+	directionTab[side] = -directionTab[side]; 
+	this->direction.x = directionTab[0];
+	this->direction.y = directionTab[1];
 }
 
 void Ball::update(float deltaTime)
 {
-	if (position[0] + size[0] * 2 >= 640 or position[0] <= 0)
+	if (position.x + size.x >= 640 or position.x - size.x <= 0)
 	{
-		direction[0] = -direction[0];
+		direction.x = -direction.x;
 		if (circle->getFillColor() == sf::Color::Green)
 			this->circle->setFillColor(sf::Color::White);
 		else if (circle->getFillColor() == sf::Color::White) 
 			this->circle->setFillColor(sf::Color::Green); 
 	}
 	
-	if (position[1] + size[1] * 2 >= 480 or position[1] <= 0)
+	if (position.y + size.y >= 480 or position.y - size.y <= 0)
 	{
-		direction[1] = -direction[1];
+		direction.y = -direction.y;
 		if (circle->getFillColor() == sf::Color::White)
 			this->circle->setFillColor(sf::Color::Green);
-		else if (circle->getFillColor() == sf::Color::White)
-			this->circle->setFillColor(sf::Color::Green);
+		else if (circle->getFillColor() == sf::Color::Green)
+			this->circle->setFillColor(sf::Color::White);
 
 	}
 
@@ -46,6 +51,6 @@ void Ball::update(float deltaTime)
 
 void Ball::updateShape()
 {
-	this->circle->setPosition(position[0], position[1]);
+	this->circle->setPosition(position.x, position.y);
 }
 
