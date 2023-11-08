@@ -131,15 +131,25 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\core\BrickBreakerManager.cpp" />
+    <ClCompile Include="src\core\GameManager.cpp" />
     <ClCompile Include="src\engine\events\EventsManager.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\engine\rendering\Window.cpp" />
+    <ClCompile Include="src\objects\Ball.cpp" />
+    <ClCompile Include="src\objects\Brick.cpp" />
+    <ClCompile Include="src\objects\GameObject.cpp" />
+    <ClCompile Include="src\objects\MovingObject.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\core\BrickBreakerManager.h" />
+    <ClInclude Include="src\core\GameManager.h" />
     <ClInclude Include="src\engine\events\EventsManager.h" />
     <ClInclude Include="src\core\AbstractGameManager.h" />
     <ClInclude Include="src\engine\rendering\Window.h" />
+    <ClInclude Include="src\objects\Ball.h" />
+    <ClInclude Include="src\objects\Brick.h" />
+    <ClInclude Include="src\objects\GameObject.h" />
+    <ClInclude Include="src\objects\MovingObject.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -3,7 +3,7 @@
 int main(int argc, char** argv)
 {
     //Création d'une fenêtre
-    sf::RenderWindow oWindow(sf::VideoMode(640, 480), "SFML");
+    sf::RenderWindow window(sf::VideoMode::getFullscreenModes()[0], "BrickBreaker", sf::Style::Fullscreen);
 
     //Création d'un cercle de radius 100
     sf::CircleShape oCircle(100.f);
@@ -21,25 +21,25 @@ int main(int argc, char** argv)
     oRectangle.setFillColor(sf::Color::Blue);
 
     //GameLoop
-    while (oWindow.isOpen())
+    while (window.isOpen())
     {
         //EVENT
         sf::Event oEvent;
-        while (oWindow.pollEvent(oEvent))
+        while (window.pollEvent(oEvent))
         {
             if (oEvent.type == sf::Event::Closed)
-                oWindow.close();
+                window.close();
         }
 
         //UPDATE
 
         //DRAW
-        oWindow.clear();
+        window.clear();
 
-        oWindow.draw(oCircle);
-        oWindow.draw(oRectangle);
+        window.draw(oCircle);
+        window.draw(oRectangle);
 
-        oWindow.display();
+        window.display();
     }
 
     return 0;

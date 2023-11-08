@@ -1,5 +1,14 @@
 #include "EventsManager.h"
 
+EventsManager::EventsManager()
+{
+}
+
+EventsManager::~EventsManager()
+{
+}
+
+
 void EventsManager::subscribe(EventName eventName, EventCallback eventCallback)
 {
 	eventCallbacksMap[eventName].push_back(eventCallback);
@@ -7,15 +16,16 @@ void EventsManager::subscribe(EventName eventName, EventCallback eventCallback)
 
 void EventsManager::unsubscribe(EventName eventName, EventCallback eventCallback)
 {
-	auto& callbacks = eventCallbacksMap[eventName];
+	std::vector<EventCallback> callbacks = eventCallbacksMap[eventName];
 	callbacks.erase(std::remove(callbacks.begin(), callbacks.end(), eventCallback), callbacks.end());
 }
 
-void EventsManager::trigger(EventName eventName, Event event)
+
+void EventsManager::trigger(EventType eventType, EventName eventName)
 {
-	for (auto& callback : eventCallbacksMap[eventName])
+	for (EventCallback callback : eventCallbacksMap[eventName])
 	{
-		callback(event);
+		callback();
 	}
 }
 
