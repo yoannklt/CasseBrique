@@ -1,14 +1,15 @@
 #pragma once
 
 #include <vector>
+#include "../entities/GameObject.h"
 
-class CollisionsSystem
+class Collisions
 {
 public:
-	CollisionsSystem();
-	~CollisionsSystem();
+	Collisions();
+	~Collisions();
 	void checkCollisions();
-	void checkAABBCollisions();
+	void checkAABBCollision(GameObject* objects[2]);
 private:
 	std::vector<GameObject*> staticBodies;
 	std::vector<GameObject*> rigidBodies;

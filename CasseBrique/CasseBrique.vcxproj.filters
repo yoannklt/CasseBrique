@@ -24,19 +24,19 @@
     <ClCompile Include="src\core\GameManager.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="src\objects\Ball.cpp">
+    <ClCompile Include="src\entities\Ball.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="src\objects\Brick.cpp">
+    <ClCompile Include="src\entities\Brick.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="src\objects\GameObject.cpp">
+    <ClCompile Include="src\entities\GameObject.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="src\objects\MovingObject.cpp">
+    <ClCompile Include="src\entities\MovingObject.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="src\systems\CollisionsSystem.cpp">
+    <ClCompile Include="src\systems\Collisions.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>
@@ -50,19 +50,25 @@
     <ClInclude Include="src\core\GameManager.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="src\objects\Ball.h">
+    <ClInclude Include="src\entities\Ball.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="src\objects\Brick.h">
+    <ClInclude Include="src\entities\Brick.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="src\objects\GameObject.h">
+    <ClInclude Include="src\entities\GameObject.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="src\objects\MovingObject.h">
+    <ClInclude Include="src\entities\MovingObject.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="src\systems\CollisionsSystem.h">
+    <ClInclude Include="src\systems\Collisions.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="src\entities\Entity.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\Component.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>
