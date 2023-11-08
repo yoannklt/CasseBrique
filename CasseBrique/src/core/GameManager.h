@@ -12,6 +12,7 @@ public:
 	~GameManager();
 	void render();
 	void update(float deltaTime);
+	void spawnGameObject(GameObject* gameObject);
 private:
 	std::vector<GameObject*> gameObjects;
 	sf::RenderWindow* window;

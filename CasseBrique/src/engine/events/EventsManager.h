@@ -37,3 +37,4 @@ public:
 private:
 	std::unordered_map<EventName, std::vector<EventCallback>> eventCallbacksMap;
 };
+

@@ -1,28 +1,23 @@
 #include <SFML/Graphics.hpp>
+#include "core/GameManager.h"
+#include "objects/MovingObject.h"
 
 int main(int argc, char** argv)
 {
     //Création d'une fenêtre
     sf::RenderWindow window(sf::VideoMode::getFullscreenModes()[0], "BrickBreaker", sf::Style::Fullscreen);
+    GameManager gameManager(&window);
+    gameManager.spawnGameObject(new MovingObject(200.f, 200.f, 50.f, 60.f));
 
-    //Création d'un cercle de radius 100
-    sf::CircleShape oCircle(100.f);
-    //A la position 0, 0
-    oCircle.setPosition(0.f, 0.f);
-    //Et de couleur verte
-    oCircle.setFillColor(sf::Color::Green);
-
-
-    //Création d'un rectangle de taille 50, 50
-    sf::RectangleShape oRectangle(sf::Vector2f(50.f, 50.f));
-    //A la position 100, 100
-    oCircle.setPosition(100.f, 100.f);
-    //Et de couleur rouge
-    oRectangle.setFillColor(sf::Color::Blue);
+    sf::Clock clock;
+    window.setFramerateLimit(60);
 
     //GameLoop
     while (window.isOpen())
     {
+        sf::Time deltaTime = clock.getElapsedTime();
+        clock.restart();
+
         //EVENT
         sf::Event oEvent;
         while (window.pollEvent(oEvent))
@@ -32,14 +27,10 @@ int main(int argc, char** argv)
         }
 
         //UPDATE
+        gameManager.update(deltaTime.asSeconds());
 
-        //DRAW
-        window.clear();
-
-        window.draw(oCircle);
-        window.draw(oRectangle);
-
-        window.display();
+        //DISPLAY
+        gameManager.render();
     }
 
     return 0;

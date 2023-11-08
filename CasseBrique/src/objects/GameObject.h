@@ -1,5 +1,11 @@
 #pragma once
 
+#include <SFML/Graphics.hpp>
+
+typedef struct VectorDirection {
+
+};
+
 class GameObject
 {
 public:
@@ -17,10 +23,10 @@ public:
 	float getYMax();
 	float getWidth();
 	float getHeight();
-
-
+	sf::Shape* shape;
 
 protected:
+	
 	float position[2] = { 0.0f, 0.0f };
 	float size[2];
 

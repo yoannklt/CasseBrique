@@ -11,7 +11,6 @@ public:
 	virtual void update(float deltaTime) override;
 	bool checkAABBCollision(GameObject* object);
 
-	sf::RectangleShape* rectangle;
 protected:
 	float direction[2] = { 1.0f, 0.1f };
 
