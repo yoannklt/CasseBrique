@@ -11,6 +11,7 @@ EventsManager::~EventsManager()
 
 void EventsManager::subscribe(EventName eventName, EventCallback eventCallback)
 {
+
 	eventCallbacksMap[eventName].push_back(eventCallback);
 }
 
@@ -28,4 +29,7 @@ void EventsManager::trigger(EventType eventType, EventName eventName)
 		callback();
 	}
 }
+
+
+
 

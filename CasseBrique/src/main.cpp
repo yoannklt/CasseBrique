@@ -1,6 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include "core/GameManager.h"
-#include "objects/MovingObject.h"
+#include "entities/MovingObject.h"
 
 int main(int argc, char** argv)
 {

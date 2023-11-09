@@ -9,26 +9,32 @@ typedef struct VectorDirection {
 class GameObject
 {
 public:
+	// CONSTRUCTORS / DESTRUCTORS
 	GameObject(float x, float y, float width, float height);
 	~GameObject();
 
+	//
 	virtual void update(float deltaTime) {};
 
-	void setPosition(float xpos, float ypos);
-	float convertRadiansToDegrees(float radianAngle);
-	float* getPosition();
+	// GETTERS/SETTERS
+	sf::Vector2f getPosition();
+	void setPosition(float xPos, float yPos);
 	float getX();
 	float getY();
 	float getXMax();
 	float getYMax();
 	float getWidth();
 	float getHeight();
-	sf::Shape* shape;
+	
+
+	//to move to math namespace
+	float convertRadiansToDegrees(float radianAngle);
 
 protected:
 	
-	float position[2] = { 0.0f, 0.0f };
-	float size[2];
+	sf::Shape* shape;
+	sf::Vector2f position;
+	sf::Vector2f size;
 
 private:
 };

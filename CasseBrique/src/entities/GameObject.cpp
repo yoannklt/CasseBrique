@@ -10,7 +10,7 @@ GameObject::GameObject(float x, float y, float width, float height)
 
 GameObject::~GameObject()
 {
-
+	delete this->shape;
 }
 
 void GameObject::setPosition(float xpos, float ypos)
