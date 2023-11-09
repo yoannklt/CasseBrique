@@ -77,6 +77,7 @@ int main(int argc, char* argv[])
         oWindow.clear();
         oWindow.draw(*brick);
         oWindow.draw(*circle); 
+            
         oWindow.draw(*canon);
 
         oWindow.display();

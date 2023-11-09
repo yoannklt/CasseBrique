@@ -135,6 +135,7 @@
     <ClCompile Include="Canon.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Maths.cpp" />
     <ClCompile Include="MovingObject.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -142,6 +143,7 @@
     <ClInclude Include="Brick.h" />
     <ClInclude Include="Canon.h" />
     <ClInclude Include="GameObject.h" />
+    <ClInclude Include="Maths.h" />
     <ClInclude Include="MovingObject.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
