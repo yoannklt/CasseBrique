@@ -1,13 +1,11 @@
 #include "Ball.h"
 
 
-
 Ball::Ball(float x, float y, float radius) : MovingObject(x, y, radius, radius)
 {
 	this->circle = new sf::CircleShape(radius);
 	this->circle->setPosition(x, y);
 	this->circle->setOrigin(radius, radius);
-	size.x;
 }
 
 Ball::~Ball()
@@ -29,6 +27,7 @@ void Ball::update(float deltaTime)
 	if (position.x + size.x >= 640 or position.x - size.x <= 0)
 	{
 		direction.x = -direction.x;
+		this->speed += 10;
 		if (circle->getFillColor() == sf::Color::Green)
 			this->circle->setFillColor(sf::Color::White);
 		else if (circle->getFillColor() == sf::Color::White) 
@@ -38,6 +37,7 @@ void Ball::update(float deltaTime)
 	if (position.y + size.y >= 480 or position.y - size.y <= 0)
 	{
 		direction.y = -direction.y;
+		this->speed += 10;
 		if (circle->getFillColor() == sf::Color::White)
 			this->circle->setFillColor(sf::Color::Green);
 		else if (circle->getFillColor() == sf::Color::Green)

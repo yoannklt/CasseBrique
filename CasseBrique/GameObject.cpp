@@ -48,15 +48,3 @@ float GameObject::getHeight() {
 	return this->size.y;
 }
 
-sf::Vector2f GameObject::normalizeVect(float x, float y)
-{
-	float norme = sqrtf(powf(x, 2) + powf(y, 2));
-	sf::Vector2f normalizedVector = { x / norme, y / norme };
-	return normalizedVector;
-}
-
-float GameObject::convertRadiansToDegrees(float radianAngle)
-{
-	float degreeAngle = radianAngle * 180 / 3.14159265358979323846;
-	return degreeAngle;
-}

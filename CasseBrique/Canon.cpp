@@ -36,9 +36,7 @@ void Canon::updateShape(int mousex, int mousey)
 
 void Canon::launchBall(Ball* ball)
 {
-	sf::Vector2f normalizeOrientation = normalizeVect(orientation.x, orientation.y);
+	sf::Vector2f normalizeOrientation = normalize(this->orientation);
 	ball->setPosition(this->rectangle->getPosition().x - normalizeOrientation.x * size.y, this->rectangle->getPosition().y - normalizeOrientation.y * size.y);
-	//std::cout << "X Direction : " << xDirection << " | Y Direction : " << yDirection << std::endl;
-	//std::cout << "X Angle : " << this->degreeAngle << " | Y Direction : " << this->degreeAngle << std::endl;
 	ball->setDirection(-normalizeOrientation.x, -normalizeOrientation.y);
 }

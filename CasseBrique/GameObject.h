@@ -1,6 +1,9 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include "Maths.h"
+
+using namespace Maths;
 
 class GameObject
 {
@@ -24,8 +27,8 @@ public:
 
 
 	// MATHS FUNCTIONS 
-	sf::Vector2f normalizeVect(float x, float y);
-	float convertRadiansToDegrees(float radianAngle);
+	//sf::Vector2f normalizeVect(float x, float y);
+	//float convertRadiansToDegrees(float radianAngle);
 
 protected:
 	sf::Vector2f position = { 0.0f, 0.0f };
