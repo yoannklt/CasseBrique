@@ -1,20 +1,21 @@
 #pragma once
-#include <SFML/Graphics.hpp>
+
 #include "MovingObject.h"
 
+namespace sf
+{
+	class CircleShape;
+}
 
 class Ball : public MovingObject
 {
 public:
-	Ball(float x, float y, float radius);
+	Ball(float x, float y, float radius, float directionX, float directionY);
 	~Ball();
 
-	inline sf::CircleShape* getShape() { return circle; };
+	void update(float deltaTime) override;
 
 	void bounce(int side);
-
-	void update(float deltaTime) override;
-	void updateShape();
 
 private:
 	sf::CircleShape* circle;

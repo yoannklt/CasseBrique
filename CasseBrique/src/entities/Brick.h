@@ -1,7 +1,12 @@
 #pragma once
 
-#include "SFML/Graphics.hpp"
 #include "GameObject.h"
+
+namespace sf
+{
+	class RectangleShape;
+}
+
 
 class Brick : GameObject
 {
@@ -9,8 +14,7 @@ public:
 	Brick(float x, float y, float width, float height);
 	~Brick();
 
-	inline sf::RectangleShape* getShape() { return rectangle; };
-	void updateShape(int x, int y);
+	void update(float deltaTime) override;
 
 
 private:

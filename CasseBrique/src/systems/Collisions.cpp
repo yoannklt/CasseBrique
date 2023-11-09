@@ -1,6 +1,15 @@
 #include "Collisions.h"
-#include "../objects/GameObject.h"
+#include "../entities/GameObject.h"
 
+
+Collisions::Collisions() 
+{
+
+}
+
+Collisions::~Collisions()
+{
+}
 
 void Collisions::checkAABBCollision(GameObject* objects[2])
 {
@@ -20,6 +29,7 @@ void Collisions::checkAABBCollision(GameObject* objects[2])
 			||
 			(longHeightObject->getX() < shortHeightObject->getXMax() && shortHeightObject->getXMax() < longHeightObject->getXMax())))
 	{
+		int a = 0;
 	}
 }
 
@@ -29,7 +39,7 @@ void Collisions::checkCollisions()
 		GameObject* rigidBody = rigidBodies[i];
 		for (int j = 0; j < this->staticBodies.size(); ++j) {
 			GameObject* objects[2] = { rigidBody, staticBodies[j] };
-			checkAABBCollision({ rigidBody, staticBodies[j] });
+			checkAABBCollision(objects);
 		}
 		
 	}

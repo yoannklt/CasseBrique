@@ -1,42 +1,45 @@
 #include "Canon.h"
 #include "Ball.h"
+#include "../core/GameManager.h"
+
 #include <iostream>
 #include <cmath>
+#include <SFML/Graphics.hpp>
+
+#include "../utils/Maths.h"
 
 Canon::Canon(float x, float y, float width, float height) : GameObject(x, y, width, height)
 {
-	this->rectangle = new sf::RectangleShape(sf::Vector2f(width, height));
-	this->rectangle->setPosition(x, y);
-	this->rectangle->setOrigin(width / 2, height);
+	this->shape = new sf::RectangleShape(sf::Vector2f(width, height));
+	this->shape->setOrigin(width / 2, height);
 }
 
 Canon::~Canon()
 {
-	delete this->rectangle;
 }
 
-void Canon::updateShape(int mousex, int mousey)
+void Canon::update(float deltaTime)
 {
+	sf::Vector2i mousePosition = GameManager::getMousePosition();
+
 	float xPoint = std::abs(position.x);
 	float yPoint = std::abs(position.y);
 
-	float radianAngle = atan2f(xPoint - mousex, yPoint - mousey);
+	float radianAngle = atan2f(xPoint - mousePosition.x, yPoint - mousePosition.y);
 	float degreeAngle = convertRadiansToDegrees(radianAngle);
 
-	this->orientation.x = xPoint - mousex;
-	this->orientation.y = yPoint - mousey;
+	this->orientation.x = xPoint - mousePosition.x;
+	this->orientation.y = yPoint - mousePosition.y;
 
 	if (degreeAngle < 90 and degreeAngle > -90)
 	{
-		this->rectangle->setRotation(-degreeAngle);
+		this->shape->setRotation(-degreeAngle);
 	}
-
-
 }
 
 void Canon::launchBall(Ball* ball)
 {
-	sf::Vector2f normalizeOrientation = normalize(this->orientation);
-	ball->setPosition(this->rectangle->getPosition().x - normalizeOrientation.x * size.y, this->rectangle->getPosition().y - normalizeOrientation.y * size.y);
+	sf::Vector2f normalizeOrientation = Maths::normalize(this->orientation);
+	ball->setPosition(this->shape->getPosition().x - normalizeOrientation.x * size.y, this->shape->getPosition().y - normalizeOrientation.y * size.y);
 	ball->setDirection(-normalizeOrientation.x, -normalizeOrientation.y);
 }

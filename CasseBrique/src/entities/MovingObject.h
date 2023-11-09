@@ -1,19 +1,21 @@
 #pragma once
 #include "GameObject.h"
-#include <SFML/Graphics.hpp>
 
 class MovingObject : public GameObject
 {
 public:
-	MovingObject(float x, float y, float width, float height);
+	MovingObject(float x, float y, float width, float height, float directionX, float directionY);
 	~MovingObject();
 
 	virtual void update(float deltaTime) override;
-	bool checkAABBCollision(GameObject* object);
+
+	void setDirection(float directionX, float directionY);
+
 
 protected:
-	float direction[2] = { 1.0f, 0.1f };
+	sf::Vector2f direction;
+	int speed = 150;
 
 private:
-	int speed = 150;
+	
 };

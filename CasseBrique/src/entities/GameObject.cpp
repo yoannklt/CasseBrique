@@ -1,11 +1,17 @@
 #include "GameObject.h"
 
+#include <SFML/Graphics.hpp>
+
 GameObject::GameObject(float x, float y, float width, float height)
 {
-	this->position[0] = x;
-	this->position[1] = y;
-	this->size[0] = width;
-	this->size[1] = height;
+	
+	this->position.x = x;
+	this->position.y = y;
+	this->size.x = width;
+	this->size.y = height;
+	
+	this->shape->setPosition(x, y);
+
 }
 
 GameObject::~GameObject()
@@ -13,35 +19,45 @@ GameObject::~GameObject()
 	delete this->shape;
 }
 
-void GameObject::setPosition(float xpos, float ypos)
-{
-	this->position[0] = xpos;
-	this->position[1] = ypos;
+sf::Shape* GameObject::getShape() {
+	return this->shape;
 }
 
-float* GameObject::getPosition() {
+void GameObject::setPosition(float xpos, float ypos)
+{
+	this->position.x = xpos;
+	this->position.y = ypos;
+	this->shape->setPosition(xpos, xpos);
+}
+
+sf::Vector2f GameObject::getPosition() {
 	return this->position;
 }
 
 float GameObject::getX() {
-	return this->position[0];
+	return this->position.x;
 }
+
 float GameObject::getY() {
-	return this->position[1];
+	return this->position.y;
 }
+
 float GameObject::getXMax() {
-	return this->position[0] + this->size[0];
+	return this->position.x + this->size.x;
 }
 
 float GameObject::getYMax() {
-	return this->position[1] + this->size[1];
+	return this->position.y + this->size.y;
 }
+
 float GameObject::getWidth() {
-	return this->size[0];
+	return this->size.x;
 }
+/*
 float GameObject::getHeight() {
-	return this->size[1];
+	return this->size.y;
 }
+*/
 
 float GameObject::convertRadiansToDegrees(float radianAngle)
 {

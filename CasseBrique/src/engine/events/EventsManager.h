@@ -1,4 +1,4 @@
-#pragma once
+/*#pragma once
 #include <unordered_map>
 #include <vector>
 #include <SFML/Graphics.hpp>
@@ -55,4 +55,4 @@ case MouseType:
 		for callback in callback list
 			callback();
 
-	EventName 
+	EventName */

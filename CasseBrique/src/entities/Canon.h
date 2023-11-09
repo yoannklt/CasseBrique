@@ -1,7 +1,14 @@
 #pragma once
 
+#include <SFML/System/Vector2.hpp>
 #include "GameObject.h"
-#include "Ball.h"
+
+namespace sf
+{
+	class RectangleShape;
+}
+
+class Ball;
 
 class Canon : GameObject
 {
@@ -10,9 +17,7 @@ public:
 	Canon(float x, float y, float width, float height);
 	~Canon();
 
-	// SHAPE RELATED FUNCTIONS
-	inline sf::RectangleShape* getShape() { return rectangle; };
-	void updateShape(int x, int y);
+	void update(float deltaTime) override;
 
 	// TEST FUNCTIONS
 	void launchBall(Ball* ball);

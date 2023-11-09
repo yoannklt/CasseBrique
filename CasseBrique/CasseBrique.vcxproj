@@ -139,6 +139,7 @@
     <ClCompile Include="src\entities\GameObject.cpp" />
     <ClCompile Include="src\entities\MovingObject.cpp" />
     <ClCompile Include="src\systems\Collisions.cpp" />
+    <ClCompile Include="src\utils\Maths.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\entities\Canon.h" />
@@ -152,6 +153,7 @@
     <ClInclude Include="src\entities\GameObject.h" />
     <ClInclude Include="src\entities\MovingObject.h" />
     <ClInclude Include="src\systems\Collisions.h" />
+    <ClInclude Include="src\utils\Maths.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

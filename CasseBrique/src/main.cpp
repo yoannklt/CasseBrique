@@ -6,8 +6,8 @@ int main(int argc, char** argv)
 {
     //Création d'une fenêtre
     sf::RenderWindow window(sf::VideoMode::getFullscreenModes()[0], "BrickBreaker", sf::Style::Fullscreen);
-    GameManager gameManager(&window);
-    gameManager.spawnGameObject(new MovingObject(200.f, 200.f, 50.f, 60.f));
+    GameManager::setWindow(&window);
+    GameManager::spawnGameObject(new MovingObject(200.f, 200.f, 50.f, 60.f, 1.f, 1.f));
 
     sf::Clock clock;
     window.setFramerateLimit(60);
@@ -27,10 +27,10 @@ int main(int argc, char** argv)
         }
 
         //UPDATE
-        gameManager.update(deltaTime.asSeconds());
+        GameManager::update(deltaTime.asSeconds());
 
         //DISPLAY
-        gameManager.render();
+        GameManager::render();
     }
 
     return 0;

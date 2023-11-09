@@ -1,10 +1,11 @@
 #pragma once
 
-#include <SFML/Graphics.hpp>
+#include <SFML/System/Vector2.hpp>
 
-typedef struct VectorDirection {
-
-};
+namespace sf 
+{
+	class Shape;
+}
 
 class GameObject
 {
@@ -18,13 +19,17 @@ public:
 
 	// GETTERS/SETTERS
 	sf::Vector2f getPosition();
-	void setPosition(float xPos, float yPos);
+	void setPosition(float xpos, float ypos);
 	float getX();
 	float getY();
 	float getXMax();
 	float getYMax();
 	float getWidth();
-	float getHeight();
+	inline float getHeight() 
+	{
+		return this->size.y;
+	}
+	sf::Shape* getShape();
 	
 
 	//to move to math namespace

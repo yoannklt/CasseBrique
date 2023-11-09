@@ -1,4 +1,4 @@
-#include "EventsManager.h"
+/*#include "EventsManager.h"
 
 EventsManager::EventsManager()
 {
@@ -30,6 +30,6 @@ void EventsManager::trigger(EventType eventType, EventName eventName)
 	}
 }
 
-
+*/
 
 

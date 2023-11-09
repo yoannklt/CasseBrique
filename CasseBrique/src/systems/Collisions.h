@@ -1,7 +1,10 @@
 #pragma once
 
 #include <vector>
-#include "../entities/GameObject.h"
+
+#include <vector>
+
+class GameObject;
 
 class Collisions
 {
@@ -13,4 +16,4 @@ public:
 private:
 	std::vector<GameObject*> staticBodies;
 	std::vector<GameObject*> rigidBodies;
-}
+};
