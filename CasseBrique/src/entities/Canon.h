@@ -10,7 +10,7 @@ namespace sf
 
 class Ball;
 
-class Canon : GameObject
+class Canon : public GameObject
 {
 public:
 	// CONSTRUCTORS / DESTRUCTORS
@@ -20,11 +20,10 @@ public:
 	void update(float deltaTime) override;
 
 	// TEST FUNCTIONS
-	void launchBall(Ball* ball);
+	void launchBall();
 
 
 private:
-	sf::RectangleShape* rectangle;
 	sf::Vector2f orientation;
 
 };

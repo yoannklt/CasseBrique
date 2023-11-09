@@ -10,7 +10,6 @@ GameObject::GameObject(float x, float y, float width, float height)
 	this->size.x = width;
 	this->size.y = height;
 	
-	this->shape->setPosition(x, y);
 
 }
 

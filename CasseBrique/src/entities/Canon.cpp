@@ -11,6 +11,7 @@
 Canon::Canon(float x, float y, float width, float height) : GameObject(x, y, width, height)
 {
 	this->shape = new sf::RectangleShape(sf::Vector2f(width, height));
+	this->shape->setPosition(x, y);
 	this->shape->setOrigin(width / 2, height);
 }
 
@@ -37,9 +38,13 @@ void Canon::update(float deltaTime)
 	}
 }
 
-void Canon::launchBall(Ball* ball)
+void Canon::launchBall()
 {
 	sf::Vector2f normalizeOrientation = Maths::normalize(this->orientation);
-	ball->setPosition(this->shape->getPosition().x - normalizeOrientation.x * size.y, this->shape->getPosition().y - normalizeOrientation.y * size.y);
-	ball->setDirection(-normalizeOrientation.x, -normalizeOrientation.y);
+	GameManager::spawnGameObject(new Ball(
+		this->shape->getPosition().x - normalizeOrientation.x * size.y, 
+		this->shape->getPosition().y - normalizeOrientation.y * size.y, 
+		10.f, 
+		-normalizeOrientation.x, 
+		-normalizeOrientation.y));
 }
