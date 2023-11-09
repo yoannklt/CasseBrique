@@ -61,7 +61,13 @@ int main(int argc, char* argv[])
                     oCanon.launchBall(&oCircle);
                     //std::cout << "Left mouse button pressed";
                     break;
+
+                default:
+                    break;
                 }
+
+            default:
+                break;
             }
 
                 
