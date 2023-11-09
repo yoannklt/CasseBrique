@@ -130,21 +130,30 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Ball.cpp" />
-    <ClCompile Include="Brick.cpp" />
-    <ClCompile Include="Canon.cpp" />
-    <ClCompile Include="GameObject.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="Maths.cpp" />
-    <ClCompile Include="MovingObject.cpp" />
+    <ClCompile Include="src\entities\Canon.cpp" />
+    <ClCompile Include="src\core\GameManager.cpp" />
+    <ClCompile Include="src\engine\events\EventsManager.cpp" />
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\entities\Ball.cpp" />
+    <ClCompile Include="src\entities\Brick.cpp" />
+    <ClCompile Include="src\entities\GameObject.cpp" />
+    <ClCompile Include="src\entities\MovingObject.cpp" />
+    <ClCompile Include="src\systems\Collisions.cpp" />
+    <ClCompile Include="src\utils\Maths.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Ball.h" />
-    <ClInclude Include="Brick.h" />
-    <ClInclude Include="Canon.h" />
-    <ClInclude Include="GameObject.h" />
-    <ClInclude Include="Maths.h" />
-    <ClInclude Include="MovingObject.h" />
+    <ClInclude Include="src\entities\Canon.h" />
+    <ClInclude Include="src\components\Component.h" />
+    <ClInclude Include="src\core\GameManager.h" />
+    <ClInclude Include="src\engine\events\EventsManager.h" />
+    <ClInclude Include="src\core\AbstractGameManager.h" />
+    <ClInclude Include="src\entities\Ball.h" />
+    <ClInclude Include="src\entities\Brick.h" />
+    <ClInclude Include="src\entities\Entity.h" />
+    <ClInclude Include="src\entities\GameObject.h" />
+    <ClInclude Include="src\entities\MovingObject.h" />
+    <ClInclude Include="src\systems\Collisions.h" />
+    <ClInclude Include="src\utils\Maths.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
