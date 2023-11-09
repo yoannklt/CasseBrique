@@ -21,6 +21,5 @@ public:
 private:
 	sf::RectangleShape* rectangle;
 	sf::Vector2f orientation;
-	
 };
 

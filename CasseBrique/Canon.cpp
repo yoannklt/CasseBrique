@@ -20,12 +20,14 @@ void Canon::updateShape(int mousex, int mousey)
 	float xPoint = std::abs(position.x);
 	float yPoint = std::abs(position.y);
 
-	float radianAngle = atan2f(xPoint - mousex, yPoint - mousey);
+	sf::Vector2f vector = vect(mousex, mousey, xPoint, yPoint);
+
+	float radianAngle = atan2f(vector.x, vector.y);
 	float degreeAngle = convertRadiansToDegrees(radianAngle);
 
 	this->orientation.x = xPoint - mousex; 
 	this->orientation.y = yPoint - mousey;
-
+	
 	if (degreeAngle < 90 and degreeAngle > -90)
 	{
 		this->rectangle->setRotation(-degreeAngle);
