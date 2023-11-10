@@ -13,6 +13,15 @@ Canon::Canon(float x, float y, float width, float height) : GameObject(x, y, wid
 	this->shape = new sf::RectangleShape(sf::Vector2f(width, height));
 	this->shape->setPosition(x, y);
 	this->shape->setOrigin(width / 2, height);
+	//GameManager::spawnGameObject(new Ball(x, y, width, orientation.x, orientation.y, sf::Color::Cyan));
+}
+
+Canon::Canon(float x, float y, float width, float height, sf::Color color) : Canon(x, y, width, height)
+{
+	this->shape->setFillColor(color);
+	this->shape->setOutlineThickness(10.f);
+	this->shape->setOutlineColor(sf::Color::Cyan);
+
 }
 
 Canon::~Canon()
@@ -46,5 +55,5 @@ void Canon::launchBall()
 		this->shape->getPosition().y - normalizeOrientation.y * size.y, 
 		10.f, 
 		-normalizeOrientation.x, 
-		-normalizeOrientation.y));
+		-normalizeOrientation.y, sf::Color::Magenta));
 }

@@ -5,8 +5,8 @@
 
 namespace sf
 {
-	class RectangleShape;
-}
+	class Color;
+}     
 
 class Ball;
 
@@ -15,6 +15,7 @@ class Canon : public GameObject
 public:
 	// CONSTRUCTORS / DESTRUCTORS
 	Canon(float x, float y, float width, float height);
+	Canon(float x, float y, float width, float height, sf::Color color);
 	~Canon();
 
 	void update(float deltaTime) override;
@@ -25,5 +26,4 @@ public:
 
 private:
 	sf::Vector2f orientation;
-
 };

@@ -1,19 +1,14 @@
 #include "GameManager.h"
-//#include "../entities/GameObject.h"
-
-/*GameManager::GameManager(sf::RenderWindow* window)
-{
-	GameManager::window = window;
-}*/
 
 #include <SFML/Graphics.hpp>
 #include "../entities/GameObject.h"
 #include "../entities/Canon.h"
 
 
-std::vector<GameObject*> GameManager::gameObjects;
+std::unordered_map<int, GameObject*> GameManager::gameObjects;
 sf::RenderWindow* GameManager::window;
 sf::Mouse* GameManager::mouse;
+int GameManager::id = 0;
 
 void GameManager::render()
 {
@@ -62,7 +57,9 @@ void GameManager::update(float deltaTime)
 }
 void GameManager::spawnGameObject(GameObject* gameObject)
 {
-	GameManager::gameObjects.push_back(gameObject);
+    GameManager::gameObjects[GameManager::id] = gameObject;
+    gameObject->setId(GameManager::id);
+    GameManager::id++;
 }
 
 sf::Vector2i GameManager::getMousePosition()
@@ -75,3 +72,9 @@ void GameManager::setWindow(sf::RenderWindow* window)
 {
 	GameManager::window = window;
 }
+
+//void GameManager::killGameObject(int id)
+//{
+//    delete GameManager::gameObjects[id];
+//    GameManager::gameObjects.erase(id);
+//}

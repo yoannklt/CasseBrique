@@ -31,6 +31,7 @@ public:
 	}
 	sf::Shape* getShape();
 	
+	void setId(int id) { this->id = id; };
 
 	//to move to math namespace
 	float convertRadiansToDegrees(float radianAngle);
@@ -40,6 +41,7 @@ protected:
 	sf::Shape* shape;
 	sf::Vector2f position;
 	sf::Vector2f size;
+	int id;
 
 private:
 };

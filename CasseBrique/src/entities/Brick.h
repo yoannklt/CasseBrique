@@ -18,6 +18,5 @@ public:
 
 
 private:
-	sf::RectangleShape* rectangle;
 
 };

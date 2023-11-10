@@ -14,7 +14,7 @@ public:
 
 protected:
 	sf::Vector2f direction;
-	int speed = 150;
+	int speed = 500;
 
 private:
 	

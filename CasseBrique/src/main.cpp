@@ -13,7 +13,7 @@ int main(int argc, char** argv)
     GameManager::setWindow(&window);
 
     //GameManager::spawnGameObject(new MovingObject(200.f, 200.f, 50.f, 60.f, 1.f, 1.f));
-    GameManager::spawnGameObject(new Canon(320.f, 480.f, 50.f, 100.f));
+    GameManager::spawnGameObject(new Canon(320.f, 480.f, 50.f, 100.f, sf::Color::Red));
 
     sf::Clock clock;
     window.setFramerateLimit(60);

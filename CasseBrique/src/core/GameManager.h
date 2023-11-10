@@ -1,7 +1,7 @@
 #pragma once
 
 #include <SFML/System/Vector2.hpp>
-#include <vector>;
+#include <unordered_map>
 
 namespace sf 
 {
@@ -21,11 +21,13 @@ public:
 	static void spawnGameObject(GameObject* gameObject);
 	static sf::Vector2i getMousePosition();
 	static void setWindow(sf::RenderWindow* window);
+	//static void killGameObject(int id);
 
 private:
 	//GameManager(sf::RenderWindow* window);
 
-	static std::vector<GameObject*> gameObjects;
+	static std::unordered_map<int, GameObject*> gameObjects;
 	static sf::RenderWindow* window;
 	static sf::Mouse* mouse;
+	static int id;
 };
