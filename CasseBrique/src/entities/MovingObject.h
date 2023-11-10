@@ -4,17 +4,17 @@
 class MovingObject : public GameObject
 {
 public:
-	MovingObject(float x, float y, float width, float height, float directionX, float directionY);
-	~MovingObject();
+	MovingObject(float x, float y, float width, float height, float orientationX, float orientationY);
+	~MovingObject() {};
 
 	virtual void update(float deltaTime) override;
 
-	void setDirection(float directionX, float directionY);
-
+	inline sf::Vector2f getOrientation() { return orientation; };
+	inline void setOrientation(float orientationX, float orientationY) { orientation = { orientationX, orientationY }; };
 
 protected:
-	sf::Vector2f direction;
-	int speed = 150;
+	sf::Vector2f orientation;
+	int speed = 500;
 
 private:
 	

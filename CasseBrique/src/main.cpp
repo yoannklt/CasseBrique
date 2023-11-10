@@ -7,9 +7,9 @@
 int main(int argc, char** argv)
 {
     //Création d'une fenêtre
-    //sf::RenderWindow window(sf::VideoMode::getFullscreenModes()[0], "BrickBreaker", sf::Style::Fullscreen);
+    sf::RenderWindow window(sf::VideoMode::getFullscreenModes()[0], "BrickBreaker", sf::Style::Fullscreen);
     //sf::RenderWindow window(sf::VideoMode(640, 480), "BrickBreaker", sf::Style::Fullscreen);
-    sf::RenderWindow window(sf::VideoMode(640, 480), "SFML");
+    //sf::RenderWindow window(sf::VideoMode(640, 480), "SFML");
     GameManager::setWindow(&window);
 
     //GameManager::spawnGameObject(new MovingObject(200.f, 200.f, 50.f, 60.f, 1.f, 1.f));

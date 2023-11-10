@@ -2,9 +2,8 @@
 
 #include <vector>
 
-#include <vector>
-
 class GameObject;
+class MovingObject;
 
 class Collisions
 {
@@ -12,8 +11,8 @@ public:
 	Collisions();
 	~Collisions();
 	void checkCollisions();
-	void checkAABBCollision(GameObject* objects[2]);
+	void checkAABBCollision(MovingObject* movingObject, GameObject* gameObject);
 private:
 	std::vector<GameObject*> staticBodies;
-	std::vector<GameObject*> rigidBodies;
+	std::vector<MovingObject*> rigidBodies;
 };

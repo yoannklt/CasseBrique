@@ -3,23 +3,15 @@
 
 #include "../utils/Maths.h"
 
-MovingObject::MovingObject(float x, float y, float width, float height, float directionX, float directionY) : GameObject(x, y, width, height)
+MovingObject::MovingObject(float x, float y, float width, float height, float orientationX, float orientationY) : GameObject(x, y, width, height)
 {
-	this->direction = Maths::normalize(sf::Vector2f({ directionX, directionY }));
-}
-
-MovingObject::~MovingObject()
-{
+	this->orientation = Maths::normalize(sf::Vector2f({ orientationX, orientationY }));
 }
 
 void MovingObject::update(float deltaTime)
 {
-	this->position.x += this->direction.x * this->speed * deltaTime;
-	this->position.y += this->direction.y * this->speed * deltaTime;
+	this->position.x += this->orientation.x * this->speed * deltaTime;
+	this->position.y += this->orientation.y * this->speed * deltaTime;
 	this->shape->setPosition(this->position.x, this->position.y);
 }
 
-void MovingObject::setDirection(float directionX, float directionY) {
-	this->direction.x = directionX;
-	this->direction.y = directionY;
-}

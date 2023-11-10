@@ -2,10 +2,6 @@
 
 #include "MovingObject.h"
 
-namespace sf
-{
-	class CircleShape;
-}
 
 class Ball : public MovingObject
 {
@@ -18,5 +14,4 @@ public:
 	void bounce(int side);
 
 private:
-	sf::CircleShape* circle;
 };
