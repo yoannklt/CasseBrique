@@ -4,7 +4,8 @@
 
 Ball::Ball(float x, float y, float diameter, float orientationX, float orientationY) : MovingObject(x, y, diameter, diameter, orientationX, orientationY)
 {
-	this->shape = new sf::RectangleShape({ diameter, diameter }); //new sf::CircleShape(diameter/2);
+
+	this->shape = new sf::CircleShape(diameter / 2);  //new sf::CircleShape(diameter/2); new sf::RectangleShape({ diameter, diameter });
 	this->shape->setPosition(x, y);
 	this->shape->setOrigin(diameter/2, diameter/2);
 }
@@ -60,5 +61,4 @@ void Ball::update(float deltaTime)
 
 void Ball::onCollision(sf::Vector2f collisionSide) {
 	this->bounce(collisionSide.x);
-	GameManager::killGameObject(this);
 }

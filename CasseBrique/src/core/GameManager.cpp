@@ -23,6 +23,7 @@ void GameManager::render()
 	GameManager::window->display();
 }
 
+
 void GameManager::update(float deltaTime)
 {
     sf::Event oEvent;
@@ -59,6 +60,7 @@ void GameManager::update(float deltaTime)
     }
     deleteGameObjectsAtEndOfUpdate();
 }
+
 void GameManager::spawnGameObject(GameObject* gameObject)
 {
 	GameManager::gameObjects.push_back(gameObject);
