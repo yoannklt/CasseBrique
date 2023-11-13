@@ -24,7 +24,7 @@ int main(int argc, char** argv)
     GameManager::spawnStaticBody(new Brick(10.f, 10.f, 30.f, 460.f));
     GameManager::spawnStaticBody(new Brick(600.f, 10.f, 30.f, 460.f));
     GameManager::spawnStaticBody(new Brick(50.f, 10.f, 540.f, 30.f));
-    //GameManager::spawnStaticBody(new Brick(50.f, 440.f, 540.f, 30.f));
+    GameManager::spawnStaticBody(new Brick(50.f, 440.f, 540.f, 30.f));
 
     
 
