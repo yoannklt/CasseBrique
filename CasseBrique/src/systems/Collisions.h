@@ -1,19 +1,28 @@
 #pragma once
 
-#include <vector>
-
+#include <SFML/System/Vector2.hpp>
 #include <vector>
 
 class GameObject;
+class MovingObject;
+
+struct CollisionData {
+	sf::Vector2f collisionSide;
+	float overMoveCoefficient;
+};
 
 class Collisions
 {
 public:
 	Collisions();
 	~Collisions();
+	void registerStaticBody(GameObject* staticBody);
+	void registerRigidBody(MovingObject* rigidBody);
+	void unregisterStaticBody(GameObject* staticBody);
+	void unregisterRigidBody(MovingObject* rigidBody);
 	void checkCollisions();
-	void checkAABBCollision(GameObject* objects[2]);
+	CollisionData checkAABBCollision(MovingObject* movingObject, GameObject* gameObject);
 private:
 	std::vector<GameObject*> staticBodies;
-	std::vector<GameObject*> rigidBodies;
+	std::vector<MovingObject*> rigidBodies;
 };

@@ -8,7 +8,7 @@ namespace sf
 }
 
 
-class Brick : GameObject
+class Brick : public GameObject
 {
 public:
 	Brick(float x, float y, float width, float height);

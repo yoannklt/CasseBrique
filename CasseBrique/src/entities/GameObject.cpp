@@ -4,13 +4,10 @@
 
 GameObject::GameObject(float x, float y, float width, float height)
 {
-	
 	this->position.x = x;
 	this->position.y = y;
 	this->size.x = width;
 	this->size.y = height;
-	
-
 }
 
 GameObject::~GameObject()
