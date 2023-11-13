@@ -1,7 +1,7 @@
-/*#pragma once
+#pragma once
 #include <unordered_map>
 #include <vector>
-#include <SFML/Graphics.hpp>
+#include <functional>
 
 typedef enum EventTypes {
 	KEY_PRESSED = 0,
@@ -18,9 +18,6 @@ typedef enum EventNames {
 	EVENT_NAMES_AMOUNT
 } EventName;
 
-sf::Event::EventName
-
-
 typedef enum EventCallbackReturns {
 	SUCCESS = 0,
 	FAILURE,
@@ -28,7 +25,7 @@ typedef enum EventCallbackReturns {
 	EVENT_CALLBACK_RETURNS_AMOUNT
 } EventCallbackReturn;
 
-using EventCallback = int(*)(); 
+using EventCallback = int(*)(); //std::function<int()>;
 
 class EventsManager
 {
@@ -43,16 +40,3 @@ public:
 private:
 	std::unordered_map<EventName, std::vector<EventCallback>> eventCallbacksMap;
 };
-
-
-std::unordered_map<EventName, std::vector<callback>> eventNameMap
-std::unordered_map<sf::Keyboard::Key, EventName> keyboardMap{KeyA pressed}
-std::unordered_map<sf::Mouse::Key, EventName> mouseMap{rightclick pressed}
-
-switch eventType
-case MouseType:
-	callbackList = eventNameMap.find(mouseMap[event.key.code])
-		for callback in callback list
-			callback();
-
-	EventName */

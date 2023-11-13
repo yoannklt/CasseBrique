@@ -18,6 +18,7 @@ public:
 	virtual void update(float deltaTime) {};
 
 	// GETTERS/SETTERS
+	virtual void onCollision(sf::Vector2f collisionSide) {};
 	sf::Vector2f getPosition();
 	void setPosition(float xpos, float ypos);
 	float getX();

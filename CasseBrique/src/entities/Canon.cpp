@@ -8,6 +8,8 @@
 
 #include "../utils/Maths.h"
 
+
+
 Canon::Canon(float x, float y, float width, float height) : GameObject(x, y, width, height)
 {
 	this->shape = new sf::RectangleShape(sf::Vector2f(width, height));
@@ -32,7 +34,7 @@ void Canon::update(float deltaTime)
 	this->orientation.x = xPoint - mousePosition.x;
 	this->orientation.y = yPoint - mousePosition.y;
 
-	if (degreeAngle < 90 and degreeAngle > -90)
+	if (true)//(degreeAngle < 90 and degreeAngle > -90)
 	{
 		this->shape->setRotation(-degreeAngle);
 	}
@@ -41,10 +43,10 @@ void Canon::update(float deltaTime)
 void Canon::launchBall()
 {
 	sf::Vector2f normalizeOrientation = Maths::normalize(this->orientation);
-	GameManager::spawnGameObject(new Ball(
+	GameManager::spawnRigidBody(new Ball(
 		this->shape->getPosition().x - normalizeOrientation.x * size.y, 
 		this->shape->getPosition().y - normalizeOrientation.y * size.y, 
-		10.f, 
+		30.f, 
 		-normalizeOrientation.x, 
 		-normalizeOrientation.y));
 }
