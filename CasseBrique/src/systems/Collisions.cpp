@@ -33,28 +33,6 @@ void Collisions::unregisterRigidBody(MovingObject* rigidBody)
 
 CollisionData Collisions::checkAABBCollision(MovingObject* movingObject, GameObject* staticObject)
 {
-
-	/*
-	// checks if there is a collision
-	bool longestWidthIndex = movingObject->getWidth() < gameObject->getWidth();
-	bool longestHeightIndex = movingObject->getHeight() < gameObject->getHeight();
-
-	GameObject* longWidthObject = longestWidthIndex ? gameObject : movingObject;
-	GameObject* longHeightObject = longestHeightIndex ? gameObject : movingObject;
-	GameObject* shortWidthObject = !longestWidthIndex ? gameObject : movingObject;
-	GameObject* shortHeightObject = !longestHeightIndex ? gameObject : movingObject;
-
-	
-	
-	if ((longWidthObject->getX() < shortWidthObject->getX() && shortWidthObject->getX() < longWidthObject->getXMax()
-		||
-		(longWidthObject->getX() < shortWidthObject->getXMax() && shortWidthObject->getXMax() < longWidthObject->getXMax()))
-		&&
-		((longHeightObject->getX() < shortHeightObject->getX() && shortHeightObject->getX() < longHeightObject->getXMax())
-			||
-			(longHeightObject->getX() < shortHeightObject->getXMax() && shortHeightObject->getXMax() < longHeightObject->getXMax())))
-	{ */
-
 	// checks if there is no collision and then takes the inverse as condition
 	if( !(movingObject->getXMax() < staticObject->getX() || movingObject->getX() > staticObject-> getXMax()
 		||
@@ -110,3 +88,28 @@ void Collisions::checkCollisions()
 		}
 	}
 }
+
+
+
+
+
+/*
+// checks if there is a collision
+bool longestWidthIndex = movingObject->getWidth() < gameObject->getWidth();
+bool longestHeightIndex = movingObject->getHeight() < gameObject->getHeight();
+
+GameObject* longWidthObject = longestWidthIndex ? gameObject : movingObject;
+GameObject* longHeightObject = longestHeightIndex ? gameObject : movingObject;
+GameObject* shortWidthObject = !longestWidthIndex ? gameObject : movingObject;
+GameObject* shortHeightObject = !longestHeightIndex ? gameObject : movingObject;
+
+
+
+if ((longWidthObject->getX() < shortWidthObject->getX() && shortWidthObject->getX() < longWidthObject->getXMax()
+	||
+	(longWidthObject->getX() < shortWidthObject->getXMax() && shortWidthObject->getXMax() < longWidthObject->getXMax()))
+	&&
+	((longHeightObject->getX() < shortHeightObject->getX() && shortHeightObject->getX() < longHeightObject->getXMax())
+		||
+		(longHeightObject->getX() < shortHeightObject->getXMax() && shortHeightObject->getXMax() < longHeightObject->getXMax())))
+{ */
