@@ -11,8 +11,8 @@ namespace sf
 class Ball : public MovingObject
 {
 public:
-	Ball(float x, float y, float radius, float directionX, float directionY);
-	Ball(float x, float y, float radius, float directionX, float directionY, sf::Color color);
+	Ball(float x, float y, float radius, float orientationX, float orientationY);
+	Ball(float x, float y, float radius, float orientationX, float orientationY, sf::Color color);
 	~Ball();
 
 	void update(float deltaTime) override;

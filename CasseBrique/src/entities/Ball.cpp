@@ -9,7 +9,7 @@ Ball::Ball(float x, float y, float diameter, float orientationX, float orientati
 	this->shape->setOrigin(diameter/2, diameter/2);
 }
 
-Ball::Ball(float x, float y, float radius, float directionX, float directionY, sf::Color color) : Ball(x,  y,  radius,  directionX,  directionY)
+Ball::Ball(float x, float y, float radius, float orientationX, float orientationY, sf::Color color) : Ball(x,  y,  radius, orientationX, orientationY)
 {
 	this->shape->setFillColor(color);
 }
