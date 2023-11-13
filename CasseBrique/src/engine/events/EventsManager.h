@@ -25,7 +25,9 @@ typedef enum EventCallbackReturns {
 	EVENT_CALLBACK_RETURNS_AMOUNT
 } EventCallbackReturn;
 
-using EventCallback = int(*)(); //std::function<int()>;
+using EventCallback = int(*)(); //std::function<int()>; // a = subscribe(std::bind(functionPointer, instanceAdress)) //std::function<int()> callback = std::bind(functionPointer, instanceAdress)
+
+
 
 class EventsManager
 {

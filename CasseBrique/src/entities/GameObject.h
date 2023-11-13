@@ -13,7 +13,8 @@ public:
 	// CONSTRUCTORS / DESTRUCTORS
 	GameObject(float x, float y, float width, float height);
 	~GameObject();
-
+	float methodName();
+	float methodNameTwo();
 	//
 	virtual void update(float deltaTime) {};
 
