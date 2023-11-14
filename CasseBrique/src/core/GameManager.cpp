@@ -6,9 +6,12 @@
 #include "../entities/MovingObject.h"
 #include "../entities/Canon.h"
 #include "../engine/events/EventsManager.h"
+#include "../components/Text.h"
+
 
 std::vector<GameObject*> GameManager::gameObjects;
 std::vector<GameObject*> GameManager::gameObjectsToDelete;
+std::vector<Text*> GameManager::texts;
 sf::RenderWindow* GameManager::window;
 sf::Mouse* GameManager::mouse;
 Collisions GameManager::collisions;
@@ -24,6 +27,16 @@ void GameManager::render()
 		GameManager::window->draw(*gameObjects[i]->getShape());
 	}
 	GameManager::window->display();
+}
+
+void GameManager::renderText()
+{
+    for (int i = 0; i < GameManager::texts.size(); i++)
+    {
+        GameManager::window->draw(*texts[i]->getText());
+    }
+    GameManager::window->display();
+
 }
 
 
@@ -70,6 +83,11 @@ void GameManager::update(float deltaTime)
 void GameManager::spawnGameObject(GameObject* gameObject)
 {
 	GameManager::gameObjects.push_back(gameObject);
+}
+
+void GameManager::spawnText(Text* text)
+{
+    GameManager::texts.push_back(text);
 }
 
 void GameManager::killGameObject(GameObject* gameObject)

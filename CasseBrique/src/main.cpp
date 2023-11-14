@@ -5,6 +5,7 @@
 #include "entities/Canon.h"
 #include "entities/Brick.h"
 #include "engine/events/EventsManager.h"
+#include "components/Text.h"
 
 struct Callbacks {
 
@@ -26,7 +27,9 @@ int main(int argc, char** argv)
     GameManager::spawnStaticBody(new Brick(50.f, 10.f, 540.f, 30.f));
     GameManager::spawnStaticBody(new Brick(50.f, 440.f, 540.f, 30.f));
 
-    
+    GameManager::spawnText(new Text ("Score", { 50, 50 }, "C:/users/ykerlogot/source/repos/CasseBrique/CasseBrique/src/assets/fonts/Roboto-Regular.ttf", 50, sf::Color::White));
+
+
 
     sf::Clock clock;
     window.setFramerateLimit(60);
@@ -66,8 +69,9 @@ int main(int argc, char** argv)
         //UPDATE
         GameManager::update(deltaTime.asSeconds());
 
-        //DISPLAY
+        //DISPLAY 
         GameManager::render();
+        GameManager::renderText();
     }
 
     return 0;

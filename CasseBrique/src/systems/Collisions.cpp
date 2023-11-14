@@ -68,7 +68,6 @@ CollisionData Collisions::checkAABBCollision(MovingObject* movingObject, GameObj
 
 
 
-
 void Collisions::checkCollisions()
 {
 	for (int i = 0; i < this->rigidBodies.size(); ++i) {

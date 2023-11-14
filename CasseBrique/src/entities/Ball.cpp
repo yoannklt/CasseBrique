@@ -30,30 +30,19 @@ void Ball::bounce(int side)
 void Ball::update(float deltaTime)
 {
 	
-	if (position.x + size.x >= 640 or position.x - size.x <= 0)
+	if (position.x + size.x >= 640 or position.x <= 0)
 	{
 		orientation.x = -orientation.x;
-		this->speed += 10;
-		if (shape->getFillColor() == sf::Color::Green)
-			this->shape->setFillColor(sf::Color::White);
-		else if (shape->getFillColor() == sf::Color::White)
-			this->shape->setFillColor(sf::Color::Green);
 	}
 
-	if (position.y + size.y >= 480 or position.y - size.y <= 0)
+	if (position.y + size.y >= 480 or position.y <= 0)
 	{
 		orientation.y = -orientation.y;
-		this->speed += 10;
-
-		if (shape->getFillColor() == sf::Color::White)
-			this->shape->setFillColor(sf::Color::Green);
-		else if (shape->getFillColor() == sf::Color::Green)
-			this->shape->setFillColor(sf::Color::White);
 	} 
 
 	MovingObject::update(deltaTime);
 
-	if ((position.x + size.x >= 640 or position.x - size.x <= 0) || (position.y + size.y >= 480 or position.y - size.y <= 0)) {
+	if (position.y + size.y >= 480) {
 		GameManager::killGameObject(this);
 	}
 

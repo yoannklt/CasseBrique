@@ -130,6 +130,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\components\Text.cpp" />
     <ClCompile Include="src\entities\Canon.cpp" />
     <ClCompile Include="src\core\GameManager.cpp" />
     <ClCompile Include="src\engine\events\EventsManager.cpp" />
@@ -143,7 +144,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\entities\Canon.h" />
-    <ClInclude Include="src\components\Component.h" />
+    <ClInclude Include="src\components\Text.h" />
     <ClInclude Include="src\core\GameManager.h" />
     <ClInclude Include="src\engine\events\EventsManager.h" />
     <ClInclude Include="src\core\AbstractGameManager.h" />
