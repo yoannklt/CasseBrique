@@ -5,17 +5,15 @@
 #include "entities/Canon.h"
 #include "entities/Brick.h"
 #include "engine/events/EventsManager.h"
-
-struct Callbacks {
-
-};
+#include "engine/rendering/Window.h"
 
 int main(int argc, char** argv)
 {
     //Création d'une fenêtre
     //sf::RenderWindow window(sf::VideoMode::getFullscreenModes()[0], "BrickBreaker", sf::Style::Fullscreen);
     //sf::RenderWindow window(sf::VideoMode(640, 480), "BrickBreaker", sf::Style::Fullscreen);
-    sf::RenderWindow window(sf::VideoMode(640, 480), "SFML");
+    //sf::RenderWindow window(sf::VideoMode(640, 480), "SFML");
+    Window window(640, 480, "BrickBreaker");
     GameManager::setWindow(&window);
     //GameManager::eventManager.subscribe<GameManager>(CLOSE_WINDOW, &GameManager::getInstance(), &GameManager::getInstance().closeWindow);
 
@@ -26,10 +24,9 @@ int main(int argc, char** argv)
     GameManager::spawnStaticBody(new Brick(50.f, 10.f, 540.f, 30.f));
     GameManager::spawnStaticBody(new Brick(50.f, 440.f, 540.f, 30.f));
 
-    
 
     sf::Clock clock;
-    window.setFramerateLimit(60);
+    window.getWindow().setFramerateLimit(60);
 
     //GameLoop
     while (window.isOpen())

@@ -18,8 +18,11 @@ void EventsManager::handleEvents()
     {
         switch (this->event.type)
         {
-        case sf::Event::MouseButtonPressed:
+        case sf::Event::Closed:
             trigger(EventType::ENVIRONNEMENT_UPDATE, EventName::CLOSE_WINDOW);
+            break;
+        case sf::Event::MouseButtonPressed:
+            trigger(EventType::ENVIRONNEMENT_UPDATE, EventName::MOUSE_RIGHT_PRESSED);
             break;
         default:
             break;

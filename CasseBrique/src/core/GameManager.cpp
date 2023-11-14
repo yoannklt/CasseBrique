@@ -6,10 +6,11 @@
 #include "../entities/MovingObject.h"
 #include "../entities/Canon.h"
 #include "../engine/events/EventsManager.h"
+#include "../engine/rendering/Window.h"
 
 std::vector<GameObject*> GameManager::gameObjects;
 std::vector<GameObject*> GameManager::gameObjectsToDelete;
-sf::RenderWindow* GameManager::window;
+Window* GameManager::window;
 sf::Mouse* GameManager::mouse;
 Collisions GameManager::collisions;
 EventsManager GameManager::eventManager;
@@ -114,7 +115,7 @@ sf::Vector2i GameManager::getMousePosition()
 	return mousePosition;
 }
 
-void GameManager::setWindow(sf::RenderWindow* window)
+void GameManager::setWindow(Window* window)
 {
 	GameManager::window = window;
 }

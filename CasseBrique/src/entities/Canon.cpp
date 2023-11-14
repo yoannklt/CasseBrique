@@ -16,7 +16,7 @@ Canon::Canon(float x, float y, float width, float height) : GameObject(x, y, wid
 	this->shape = new sf::RectangleShape(sf::Vector2f(width, height));
 	this->shape->setPosition(x, y);
 	this->shape->setOrigin(width / 2, height);
-	GameManager::eventManager.subscribe<Canon>(CLOSE_WINDOW, this, &Canon::launchBall);
+	GameManager::eventManager.subscribe<Canon>(MOUSE_RIGHT_PRESSED, this, &Canon::launchBall);
 	//GameManager::spawnGameObject(new Ball(x, y, width, orientation.x, orientation.y, sf::Color::Cyan));
 }
 
@@ -60,6 +60,5 @@ int Canon::launchBall()
 		30.f, 
 		-normalizeOrientation.x, 
 		-normalizeOrientation.y, sf::Color::Magenta));
-	GameManager::eventManager.unsubscribe<Canon>(CLOSE_WINDOW, this, &Canon::launchBall);
 	return 0;
 }

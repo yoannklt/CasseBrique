@@ -25,6 +25,7 @@ typedef enum EventNames {
 	KEY_A_RELEASED,
 	ESCAPE,
 	CLOSE_WINDOW,
+	MOUSE_RIGHT_PRESSED,
 	EVENT_NAMES_AMOUNT
 } EventName;
 
