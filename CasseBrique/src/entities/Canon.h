@@ -21,7 +21,7 @@ public:
 	void update(float deltaTime) override;
 
 	// TEST FUNCTIONS
-	void launchBall();
+	int launchBall();
 
 
 private:

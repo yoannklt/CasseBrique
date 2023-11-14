@@ -12,6 +12,7 @@ namespace sf
 class GameObject;
 class MovingObject;
 class Collisions;
+class EventsManager;
 
 class GameManager
 {
@@ -28,8 +29,13 @@ public:
 	static void registerRigidBody(MovingObject* rigidBody);
 	static sf::Vector2i getMousePosition();
 	static void setWindow(sf::RenderWindow* window);
+	static sf::RenderWindow* getWindow();
+	static int closeWindow();
+	static EventsManager eventManager;
 
-
+	static GameManager& getInstance() {
+		return instance;
+	}
 
 private:
 	//GameManager(sf::RenderWindow* window););
@@ -40,6 +46,9 @@ private:
 	static std::vector<GameObject*> gameObjects;
 	static std::vector<GameObject*> gameObjectsToDelete;
 	static Collisions collisions;
+	
 	static sf::RenderWindow* window;
 	static sf::Mouse* mouse;
+
+	static GameManager instance;
 };

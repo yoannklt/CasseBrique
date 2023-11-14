@@ -5,13 +5,16 @@
 #include "../entities/GameObject.h"
 #include "../entities/MovingObject.h"
 #include "../entities/Canon.h"
-
+#include "../engine/events/EventsManager.h"
 
 std::vector<GameObject*> GameManager::gameObjects;
 std::vector<GameObject*> GameManager::gameObjectsToDelete;
 sf::RenderWindow* GameManager::window;
 sf::Mouse* GameManager::mouse;
 Collisions GameManager::collisions;
+EventsManager GameManager::eventManager;
+GameManager GameManager::instance;
+
 
 void GameManager::render()
 {
@@ -26,8 +29,10 @@ void GameManager::render()
 
 void GameManager::update(float deltaTime)
 {
+    //Canon* canon = (Canon*)GameManager::gameObjects[0];
+
+    /*
     sf::Event oEvent;
-    Canon* canon = (Canon*)GameManager::gameObjects[0];
     while (GameManager::window->pollEvent(oEvent))
     {
         switch (oEvent.type)
@@ -52,7 +57,8 @@ void GameManager::update(float deltaTime)
         default:
             break;
         }
-    }
+    }*/
+    GameManager::eventManager.handleEvents();
     GameManager::collisions.checkCollisions();
     for (int i = 0; i < GameManager::gameObjects.size(); i++)
     {
@@ -111,4 +117,15 @@ sf::Vector2i GameManager::getMousePosition()
 void GameManager::setWindow(sf::RenderWindow* window)
 {
 	GameManager::window = window;
+}
+
+sf::RenderWindow* GameManager::getWindow()
+{
+    return GameManager::window;
+}
+
+int GameManager::closeWindow()
+{
+    GameManager::window->close();
+    return 0;
 }

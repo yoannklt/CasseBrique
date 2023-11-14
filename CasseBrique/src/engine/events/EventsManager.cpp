@@ -1,4 +1,7 @@
 #include "EventsManager.h"
+#include "../../core/GameManager.h"
+#include <SFML/Graphics.hpp>
+#include <iostream>
 
 EventsManager::EventsManager()
 {
@@ -8,33 +11,27 @@ EventsManager::~EventsManager()
 {
 }
 
-void EventsManager::subscribe(EventName eventName, EventCallback eventCallback)
+void EventsManager::handleEvents()
 {
-	if (this->eventCallbacksMap.find(eventName) != this->eventCallbacksMap.end()) {
-		this->eventCallbacksMap[eventName].push_back(eventCallback);
-	}
-	else {
-		this->eventCallbacksMap[eventName] = std::vector<EventCallback>{ eventCallback };
-	}
-}
 
-void EventsManager::unsubscribe(EventName eventName, EventCallback eventCallback)
-{
-	std::vector<EventCallback> callbacks = eventCallbacksMap[eventName];
-	if (callbacks.size() == 0) {
-		callbacks.~vector();
-		eventCallbacksMap.erase(eventName);
-	}
-	else {
-		//EventCallback index = std::find(callbacks.begin(), callbacks.end(), eventCallback);
-		callbacks.erase(std::remove(callbacks.begin(), callbacks.end(), eventCallback), callbacks.end());
-	}
+    while (GameManager::getWindow()->pollEvent(this->event))
+    {
+        switch (this->event.type)
+        {
+        case sf::Event::MouseButtonPressed:
+            trigger(EventType::ENVIRONNEMENT_UPDATE, EventName::CLOSE_WINDOW);
+            break;
+        default:
+            break;
+        }
+    }
 }
 
 void EventsManager::trigger(EventType eventType, EventName eventName)
 {
-	for (EventCallback callback : eventCallbacksMap[eventName])
+	for (EventCallbackData callbackData : eventCallbacksMap[eventName])
 	{
-		callback();
+        std::cout << "calling callback for event " << eventName << std::endl;
+		callbackData.callback();
 	}
 }

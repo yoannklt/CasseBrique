@@ -17,7 +17,7 @@ int main(int argc, char** argv)
     //sf::RenderWindow window(sf::VideoMode(640, 480), "BrickBreaker", sf::Style::Fullscreen);
     sf::RenderWindow window(sf::VideoMode(640, 480), "SFML");
     GameManager::setWindow(&window);
-
+    //GameManager::eventManager.subscribe<GameManager>(CLOSE_WINDOW, &GameManager::getInstance(), &GameManager::getInstance().closeWindow);
 
     //GameManager::spawnGameObject(new MovingObject(200.f, 200.f, 50.f, 60.f, 1.f, 1.f));
     GameManager::spawnGameObject(new Canon(320.f, 240.f, 50.f, 100.f));
