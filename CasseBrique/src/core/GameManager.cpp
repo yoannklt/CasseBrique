@@ -16,7 +16,6 @@ Collisions GameManager::collisions;
 EventsManager GameManager::eventManager;
 GameManager GameManager::instance;
 
-
 void GameManager::render()
 {
 	GameManager::window->getWindow()->clear();

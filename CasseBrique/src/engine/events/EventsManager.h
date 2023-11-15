@@ -72,6 +72,8 @@ public:
 
 	inline EventName getSFMLClosedEventName() { return EventName::CLOSE_WINDOW_BUTTON; };
 
+	inline EventName ignoreSFMLEventType() { return EventName::EVENT_NAMES_COUNT; };
+
 private:
 	sf::Event event;
 	std::unordered_map<EventName, std::vector<EventCallbackData>> eventCallbacksMap;
