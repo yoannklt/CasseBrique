@@ -6,7 +6,6 @@
 Ball::Ball(float x, float y, float diameter, float orientationX, float orientationY) : MovingObject(x, y, diameter, diameter, orientationX, orientationY)
 {
 	//this->shape = new sf::CircleShape(diameter / 2);
-	this->sprite = new sf::Sprite(texture)
 	this->drawable = this->shape;  //new sf::CircleShape(diameter/2); new sf::RectangleShape({ diameter, diameter });
 	this->transformable = this->shape;  //new sf::CircleShape(diameter/2); new sf::RectangleShape({ diameter, diameter });
 	this->transformable->setPosition(x, y);
