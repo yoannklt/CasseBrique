@@ -66,7 +66,11 @@ CollisionData Collisions::checkAABBCollision(MovingObject* movingObject, GameObj
 	return { sf::Vector2f(0.f, 0.f), 2000.f }; // second value should be replaced with the physical step + 1 (so that it's an impossible step)
 }
 
+CollisionData Collisions::checkOBBCollision(MovingObject* movingObject, GameObject* staticObject)
+{
 
+	return { sf::Vector2f(0.f, 0.f), 2000.f }; // second value should be replaced with the physical step + 1 (so that it's an impossible step)
+}
 
 void Collisions::checkCollisions()
 {
@@ -112,3 +116,28 @@ if ((longWidthObject->getX() < shortWidthObject->getX() && shortWidthObject->get
 		||
 		(longHeightObject->getX() < shortHeightObject->getXMax() && shortHeightObject->getXMax() < longHeightObject->getXMax())))
 { */
+
+
+
+/*
+
+
+sf::Vector2f getAssociatedVector(vertexList[i] v1, vertexList[i+1] v2){
+	return {v2.x - v1.x, v2.y - v1.y}
+};
+
+
+sf::Vector2f areIntersecting(sf::Vector2f segment1[2], sf::Vector2f segment2[2]) {
+	directionalVector1 = getAssociatedVector(segment1[0], segment1[1]);
+	directionalVector2 = getAssociatedVector(segment2[0], segment2[1]);
+	sf::Vector2f point = getIntersectionPointBetweenRights(directionalVector1, directionalVector2);
+	if()
+
+}
+
+
+class Collider {
+private:
+std::vector<sf::Vector2f> vertexList;
+}
+*/

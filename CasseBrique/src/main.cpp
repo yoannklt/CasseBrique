@@ -6,6 +6,7 @@
 #include "entities/Brick.h"
 #include "engine/events/EventsManager.h"
 #include "components/Score.h"
+#include "engine/rendering/Window.h"
 
 
 int main(int argc, char** argv)
@@ -13,7 +14,8 @@ int main(int argc, char** argv)
     //Création d'une fenêtre
     //sf::RenderWindow window(sf::VideoMode::getFullscreenModes()[0], "BrickBreaker", sf::Style::Fullscreen);
     //sf::RenderWindow window(sf::VideoMode(640, 480), "BrickBreaker", sf::Style::Fullscreen);
-    sf::RenderWindow window(sf::VideoMode(640, 480), "SFML");
+    //sf::RenderWindow window(sf::VideoMode(640, 480), "SFML");
+    Window window(640, 480, "BrickBreaker");
     GameManager::setWindow(&window);
     //GameManager::eventManager.subscribe<GameManager>(CLOSE_WINDOW, &GameManager::getInstance(), &GameManager::getInstance().closeWindow);
 
@@ -27,19 +29,13 @@ int main(int argc, char** argv)
 
     GameManager::spawnGameObject(new Score("0", {50, 50}, "C:/users/ykerlogot/source/repos/CasseBrique/CasseBrique/src/assets/fonts/Roboto-Regular.ttf", 30, sf::Color::White));
 
-    sf::Texture tex;
-    tex.loadFromFile("C:/users/ykerlogot/source/repos/CasseBrique/CasseBrique/src/assets/images/red.png");
-
-    sf::Sprite sprite;
-    sprite.setTexture(tex);
-    sprite.setTextureRect(sf::IntRect(0, 0, 616, 614)); 
 
 
     sf::Clock clock;
-    window.setFramerateLimit(60);
+    window.getWindow()->setFramerateLimit(60);
 
     //GameLoop
-    while (window.isOpen())
+    while (window.getWindow()->isOpen())
     {
         sf::Time deltaTime = clock.getElapsedTime();
         clock.restart();
@@ -73,10 +69,8 @@ int main(int argc, char** argv)
         //UPDATE
         GameManager::update(deltaTime.asSeconds());
 
-        //DISPLAY 
-        //GameManager::render();
-        window.draw(sprite);
-        window.display();
+        //DISPLAY
+        GameManager::render();
     }
 
     return 0;

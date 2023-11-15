@@ -1,6 +1,6 @@
 #include "GameObject.h"
 #include <cstdlib>
-#include <SFML/Graphics.hpp>$
+#include <SFML/Graphics.hpp>
 #include <iostream>
 
 GameObject::GameObject(float x, float y, float width, float height)

@@ -132,6 +132,7 @@
   <ItemGroup>
     <ClCompile Include="src\components\Score.cpp" />
     <ClCompile Include="src\components\Text.cpp" />
+    <ClCompile Include="src\engine\rendering\Window.cpp" />
     <ClCompile Include="src\entities\Canon.cpp" />
     <ClCompile Include="src\core\GameManager.cpp" />
     <ClCompile Include="src\engine\events\EventsManager.cpp" />
@@ -146,6 +147,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\components\Score.h" />
+    <ClInclude Include="src\engine\events\EventNames.h" />
+    <ClInclude Include="src\engine\rendering\Window.h" />
     <ClInclude Include="src\entities\Canon.h" />
     <ClInclude Include="src\components\Text.h" />
     <ClInclude Include="src\core\GameManager.h" />

@@ -22,6 +22,7 @@ public:
 	void unregisterRigidBody(MovingObject* rigidBody);
 	void checkCollisions();
 	CollisionData checkAABBCollision(MovingObject* movingObject, GameObject* gameObject);
+	CollisionData checkOBBCollision(MovingObject* movingObject, GameObject* staticObject);
 private:
 	std::vector<GameObject*> staticBodies;
 	std::vector<MovingObject*> rigidBodies;
