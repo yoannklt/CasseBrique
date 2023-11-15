@@ -29,8 +29,7 @@ public:
 	static void registerRigidBody(MovingObject* rigidBody);
 	static sf::Vector2i getMousePosition();
 	static void setWindow(Window* window);
-	static sf::RenderWindow* getWindow();
-	static int closeWindow();
+	static Window* getWindow();
 	static EventsManager eventManager;
 
 	static GameManager& getInstance() {

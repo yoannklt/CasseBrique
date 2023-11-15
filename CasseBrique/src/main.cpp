@@ -26,10 +26,10 @@ int main(int argc, char** argv)
 
 
     sf::Clock clock;
-    window.getWindow().setFramerateLimit(60);
+    window.getWindow()->setFramerateLimit(60);
 
     //GameLoop
-    while (window.isOpen())
+    while (window.getWindow()->isOpen())
     {
         sf::Time deltaTime = clock.getElapsedTime();
         clock.restart();

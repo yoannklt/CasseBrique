@@ -143,6 +143,7 @@
     <ClCompile Include="src\utils\Maths.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\engine\events\EventNames.h" />
     <ClInclude Include="src\engine\rendering\Window.h" />
     <ClInclude Include="src\entities\Canon.h" />
     <ClInclude Include="src\components\Component.h" />

@@ -10,7 +10,7 @@ public:
 	Window(int width, int height, const char* title = "New Project");
 	~Window();
 	int closeWindow();
-	inline sf::RenderWindow getWindow() { return window; };
+	inline sf::RenderWindow* getWindow() { return &window; };
 
 private:
 	sf::RenderWindow window;

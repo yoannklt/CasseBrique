@@ -4,30 +4,13 @@
 #include <functional>
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include "EventNames.h"
 
 class VoidClass {};
 
 namespace sf {
 	class Event;
 }
-
-typedef enum EventTypes {
-	KEY_PRESSED = 0,
-	KEY_RELEASED,
-	MOUSE_MOTION,
-	MOUSE_CLICK,
-	ENVIRONNEMENT_UPDATE,
-	EVENT_TYPES_AMOUNT
-} EventType;
-
-typedef enum EventNames {
-	KEY_A_PRESSED = 0,
-	KEY_A_RELEASED,
-	ESCAPE,
-	CLOSE_WINDOW,
-	MOUSE_RIGHT_PRESSED,
-	EVENT_NAMES_AMOUNT
-} EventName;
 
 typedef enum EventCallbackReturns {
 	SUCCESS = 0,
@@ -38,14 +21,12 @@ typedef enum EventCallbackReturns {
 
 using EventCallback = std::function<int()>; // a = subscribe(std::bind(functionPointer, instanceAdress)) //std::function<int()> callback = std::bind(functionPointer, instanceAdress)
 
-
 struct EventCallbackData
 {
 	void* instanceAdress;
 	void(VoidClass::* methodPointer)() ;
 	EventCallback callback;
 };
-
 
 class EventsManager
 {
@@ -77,13 +58,30 @@ public:
 			index++;
 		}
 	}
+	
+	void handleSFMLEvents();
+	void trigger(EventName eventName);
 
-	void handleEvents();
+	inline EventName getSFMLKeyPressedEventName() { return EventsManager::SFMLKeyPressedTranslationMap[this->event.key.code]; };
 
-	void trigger(EventType eventType, EventName eventName);
+	inline EventName getSFMLKeyReleasedEventName() { return EventsManager::SFMLKeyReleasedTranslationMap[this->event.key.code]; };
+
+	inline EventName getSFMLMouseButtonPressedEventName() { return EventsManager::SFMLMouseButtonPressedTranslationMap[this->event.mouseButton.button]; };
+
+	inline EventName getSFMLMouseButtonReleasedEventName() { return EventsManager::SFMLMouseButtonReleasedTranslationMap[this->event.mouseButton.button]; };
+
+	inline EventName getSFMLClosedEventName() { return EventName::CLOSE_WINDOW_BUTTON; };
 
 private:
 	sf::Event event;
 	std::unordered_map<EventName, std::vector<EventCallbackData>> eventCallbacksMap;
+	static std::unordered_map <sf::Event::EventType, EventName(EventsManager::*)()> SFMLMapper;
+
+	//Translation Maps
+	static std::unordered_map<sf::Keyboard::Key, EventName> SFMLKeyPressedTranslationMap;
+	static std::unordered_map<sf::Keyboard::Key, EventName> SFMLKeyReleasedTranslationMap;
+	static std::unordered_map<sf::Mouse::Button, EventName> SFMLMouseButtonPressedTranslationMap;
+	static std::unordered_map<sf::Mouse::Button, EventName> SFMLMouseButtonReleasedTranslationMap;
 };
+
 

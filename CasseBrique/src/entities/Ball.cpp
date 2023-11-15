@@ -62,3 +62,4 @@ void Ball::update(float deltaTime)
 void Ball::onCollision(sf::Vector2f collisionSide) {
 	this->bounce(collisionSide.x);
 }
+

@@ -19,12 +19,12 @@ GameManager GameManager::instance;
 
 void GameManager::render()
 {
-	GameManager::window->clear();
+	GameManager::window->getWindow()->clear();
 	for (int i = 0; i < GameManager::gameObjects.size(); i++)
 	{
-		GameManager::window->draw(*gameObjects[i]->getShape());
+		GameManager::window->getWindow()->draw(*gameObjects[i]->getShape());
 	}
-	GameManager::window->display();
+	GameManager::window->getWindow()->display();
 }
 
 
@@ -59,7 +59,7 @@ void GameManager::update(float deltaTime)
             break;
         }
     }*/
-    GameManager::eventManager.handleEvents();
+    GameManager::eventManager.handleSFMLEvents();
     GameManager::collisions.checkCollisions();
     for (int i = 0; i < GameManager::gameObjects.size(); i++)
     {
@@ -111,7 +111,7 @@ void GameManager::registerRigidBody(MovingObject* rigidBody) {
 
 sf::Vector2i GameManager::getMousePosition()
 {
-	sf::Vector2i mousePosition = GameManager::mouse->getPosition(*GameManager::window);
+	sf::Vector2i mousePosition = GameManager::mouse->getPosition(*GameManager::window->getWindow());
 	return mousePosition;
 }
 
@@ -120,13 +120,8 @@ void GameManager::setWindow(Window* window)
 	GameManager::window = window;
 }
 
-sf::RenderWindow* GameManager::getWindow()
+Window* GameManager::getWindow()
 {
     return GameManager::window;
 }
 
-int GameManager::closeWindow()
-{
-    GameManager::window->close();
-    return 0;
-}

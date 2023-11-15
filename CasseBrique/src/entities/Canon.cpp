@@ -2,6 +2,7 @@
 #include "Ball.h"
 #include "../core/GameManager.h"
 #include "../engine/events/EventsManager.h"
+#include "../engine/events/EventNames.h"
 
 #include <iostream>
 #include <cmath>
