@@ -7,6 +7,12 @@ typedef enum EventNames {
 	//Keyboard Keys Pressed
 	KEY_UNKNOWN_PRESSED = 0,  // Unknown key or non-alphanumeric keys
 
+	//CUSTOM EVENTS
+	BALL_CREATED,
+	BALL_DESTROYED,
+	BRICK_TOUCH,
+	BRICK_DESTROY,
+
 	// Alphanumeric keys
 	KEY_A_PRESSED,
 	KEY_B_PRESSED,

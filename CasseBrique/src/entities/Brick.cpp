@@ -27,7 +27,7 @@ void Brick::update(float deltaTime)
 void Brick::onCollision(sf::Vector2f collisionSide)
 {
 	this->health -= 1;
-	GameManager::eventManager.trigger(ENVIRONNEMENT_UPDATE, BRICK_TOUCH);
+	GameManager::eventManager.trigger(BRICK_TOUCH);
 	switch (this->health)
 	{
 	case 4:
@@ -47,7 +47,7 @@ void Brick::onCollision(sf::Vector2f collisionSide)
 		break;
 
 	case 0:
-		GameManager::eventManager.trigger(ENVIRONNEMENT_UPDATE, BRICK_DESTROY); 
+		GameManager::eventManager.trigger(BRICK_DESTROY); 
 		GameManager::killGameObject(this);
 		break;
 

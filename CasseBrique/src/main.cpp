@@ -27,7 +27,7 @@ int main(int argc, char** argv)
     //GameManager::spawnStaticBody(new Brick(120.f, 70.f, 540.f, 30.f));
     GameManager::spawnStaticBody(new Brick(50.f, 440.f, 540.f, 30.f));
 
-    GameManager::spawnGameObject(new Score("0", {50, 50}, "C:/users/ykerlogot/source/repos/CasseBrique/CasseBrique/src/assets/fonts/Roboto-Regular.ttf", 30, sf::Color::White));
+    GameManager::spawnGameObject(new Score("0", {50, 50}, "C:/users/gdalmon/source/repos/yoannklt/CasseBrique/CasseBrique/src/assets/fonts/Roboto-Regular.ttf", 30, sf::Color::White));
 
 
 
