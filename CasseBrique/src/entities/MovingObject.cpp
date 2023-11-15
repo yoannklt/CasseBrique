@@ -13,6 +13,6 @@ void MovingObject::update(float deltaTime)
 {
 	this->position.x += this->orientation.x * this->speed * deltaTime;
 	this->position.y += this->orientation.y * this->speed * deltaTime;
-	this->shape->setPosition(this->position.x+this->shape->getOrigin().x, this->position.y + this->shape->getOrigin().y);
+	this->transformable->setPosition(this->position.x+this->transformable->getOrigin().x, this->position.y + this->transformable->getOrigin().y);
 }
 

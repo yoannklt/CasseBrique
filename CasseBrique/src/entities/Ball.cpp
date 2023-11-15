@@ -1,13 +1,16 @@
 #include "Ball.h"
 #include <SFML/Graphics.hpp>
 #include "../core/GameManager.h"
+#include "../engine/events/EventsManager.h"
 
 Ball::Ball(float x, float y, float diameter, float orientationX, float orientationY) : MovingObject(x, y, diameter, diameter, orientationX, orientationY)
 {
-
-	this->shape = new sf::CircleShape(diameter / 2);  //new sf::CircleShape(diameter/2); new sf::RectangleShape({ diameter, diameter });
-	this->shape->setPosition(x, y);
-	this->shape->setOrigin(diameter/2, diameter/2);
+	//this->shape = new sf::CircleShape(diameter / 2);
+	this->sprite = new sf::Sprite(texture)
+	this->drawable = this->shape;  //new sf::CircleShape(diameter/2); new sf::RectangleShape({ diameter, diameter });
+	this->transformable = this->shape;  //new sf::CircleShape(diameter/2); new sf::RectangleShape({ diameter, diameter });
+	this->transformable->setPosition(x, y);
+	this->transformable->setOrigin(diameter/2, diameter/2);
 }
 
 Ball::Ball(float x, float y, float radius, float orientationX, float orientationY, sf::Color color) : Ball(x,  y,  radius, orientationX, orientationY)
@@ -17,6 +20,9 @@ Ball::Ball(float x, float y, float radius, float orientationX, float orientation
 
 Ball::~Ball()
 {
+	std::cout << "Ball Destroyed" << std::endl;
+	GameManager::eventManager.trigger(ENTITY_DESTROYED, BALL_DESTROYED);
+	delete this->shape;
 }
 
 void Ball::bounce(int side)
@@ -42,7 +48,7 @@ void Ball::update(float deltaTime)
 
 	MovingObject::update(deltaTime);
 
-	if (position.y + size.y >= 480) {
+	if (position.y + size.y >= 480) {  
 		GameManager::killGameObject(this);
 	}
 

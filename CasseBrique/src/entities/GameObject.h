@@ -5,6 +5,8 @@
 namespace sf 
 {
 	class Shape;
+	class Transformable;
+	class Drawable;
 }
 
 class GameObject
@@ -12,7 +14,7 @@ class GameObject
 public:
 	// CONSTRUCTORS / DESTRUCTORS
 	GameObject(float x, float y, float width, float height);
-	~GameObject();
+	virtual ~GameObject();
 	float methodName();
 	float methodNameTwo();
 	//
@@ -27,18 +29,18 @@ public:
 	float getXMax();
 	float getYMax();
 	float getWidth();
-	inline float getHeight() 
+	inline float getHeight()
 	{
 		return this->size.y;
-	}
-	sf::Shape* getShape();
-
+	};
+	inline sf::Drawable* getDrawable() { return this->drawable; };
+	inline sf::Transformable* getTransformable() { return this->transformable; };
 	//to move to math namespace
 	float convertRadiansToDegrees(float radianAngle);
 
 protected:
-	
-	sf::Shape* shape;
+	sf::Drawable* drawable;
+	sf::Transformable* transformable;
 	sf::Vector2f position;
 	sf::Vector2f size;
 

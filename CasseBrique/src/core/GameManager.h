@@ -1,7 +1,7 @@
 #pragma once
 
 #include <SFML/System/Vector2.hpp>
-#include <vector>;
+#include <vector>
 
 namespace sf 
 {
@@ -21,10 +21,8 @@ public:
 	
 	//~GameManager();
 	static void render();
-	static void renderText();
 	static void update(float deltaTime);
 	static void spawnGameObject(GameObject* gameObject);
-	static void spawnText(Text* text);
 	static void killGameObject(GameObject* gameObject);
 	static void spawnStaticBody(GameObject* staticBody);
 	static void spawnRigidBody(MovingObject* rigidBody);
@@ -36,9 +34,6 @@ public:
 	static int closeWindow();
 	static EventsManager eventManager;
 
-	static GameManager& getInstance() {
-		return instance;
-	}
 
 private:
 	//GameManager(sf::RenderWindow* window););
@@ -48,12 +43,9 @@ private:
 
 	static std::vector<GameObject*> gameObjects;
 	static std::vector<GameObject*> gameObjectsToDelete;
-	static std::vector<Text*> texts;
 
 	static Collisions collisions;
 	
 	static sf::RenderWindow* window;
 	static sf::Mouse* mouse;
-
-	static GameManager instance;
 };

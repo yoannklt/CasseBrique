@@ -21,18 +21,14 @@ float GameObject::methodNameTwo() {
 
 GameObject::~GameObject()
 {
-	delete this->shape;
-}
-
-sf::Shape* GameObject::getShape() {
-	return this->shape;
+	std::cout << "GameObject Destroyed" << std::endl;
 }
 
 void GameObject::setPosition(float xpos, float ypos)
 {
 	this->position.x = xpos;
 	this->position.y = ypos;
-	this->shape->setPosition(xpos, xpos);
+	this->transformable->setPosition(xpos, xpos);
 }
 
 sf::Vector2f GameObject::getPosition() {

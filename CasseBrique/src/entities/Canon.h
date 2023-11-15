@@ -6,6 +6,7 @@
 namespace sf
 {
 	class Color;
+	class RectangleShape;
 }     
 
 class Ball;
@@ -22,8 +23,12 @@ public:
 
 	// TEST FUNCTIONS
 	int launchBall();
+	inline int toggleShootCondition() { this->canShoot = !this->canShoot; return 0; };
 
+protected:
+	sf::RectangleShape* shape;
 
 private:
 	sf::Vector2f orientation;
+	bool canShoot = true;
 };

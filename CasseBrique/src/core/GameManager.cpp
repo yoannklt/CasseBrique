@@ -11,32 +11,19 @@
 
 std::vector<GameObject*> GameManager::gameObjects;
 std::vector<GameObject*> GameManager::gameObjectsToDelete;
-std::vector<Text*> GameManager::texts;
 sf::RenderWindow* GameManager::window;
 sf::Mouse* GameManager::mouse;
 Collisions GameManager::collisions;
 EventsManager GameManager::eventManager;
-GameManager GameManager::instance;
-
 
 void GameManager::render()
 {
 	GameManager::window->clear();
 	for (int i = 0; i < GameManager::gameObjects.size(); i++)
 	{
-		GameManager::window->draw(*gameObjects[i]->getShape());
+		GameManager::window->draw(*gameObjects[i]->getDrawable());
 	}
 	GameManager::window->display();
-}
-
-void GameManager::renderText()
-{
-    for (int i = 0; i < GameManager::texts.size(); i++)
-    {
-        GameManager::window->draw(*texts[i]->getText());
-    }
-    GameManager::window->display();
-
 }
 
 
@@ -83,11 +70,6 @@ void GameManager::update(float deltaTime)
 void GameManager::spawnGameObject(GameObject* gameObject)
 {
 	GameManager::gameObjects.push_back(gameObject);
-}
-
-void GameManager::spawnText(Text* text)
-{
-    GameManager::texts.push_back(text);
 }
 
 void GameManager::killGameObject(GameObject* gameObject)

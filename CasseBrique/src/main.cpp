@@ -5,11 +5,8 @@
 #include "entities/Canon.h"
 #include "entities/Brick.h"
 #include "engine/events/EventsManager.h"
-#include "components/Text.h"
+#include "components/Score.h"
 
-struct Callbacks {
-
-};
 
 int main(int argc, char** argv)
 {
@@ -22,13 +19,20 @@ int main(int argc, char** argv)
 
     //GameManager::spawnGameObject(new MovingObject(200.f, 200.f, 50.f, 60.f, 1.f, 1.f));
     GameManager::spawnGameObject(new Canon(320.f, 240.f, 50.f, 100.f));
-    GameManager::spawnStaticBody(new Brick(10.f, 10.f, 30.f, 460.f));
-    GameManager::spawnStaticBody(new Brick(600.f, 10.f, 30.f, 460.f));
-    GameManager::spawnStaticBody(new Brick(50.f, 10.f, 540.f, 30.f));
+    GameManager::spawnStaticBody(new Brick(10.f, 10.f, 30.f, 460.f)); 
+    GameManager::spawnStaticBody(new Brick(600.f, 10.f, 30.f, 460.f)); 
+    GameManager::spawnStaticBody(new Brick(50.f, 10.f, 540.f, 30.f)); 
+    //GameManager::spawnStaticBody(new Brick(120.f, 70.f, 540.f, 30.f));
     GameManager::spawnStaticBody(new Brick(50.f, 440.f, 540.f, 30.f));
 
-    GameManager::spawnText(new Text ("Score", { 50, 50 }, "C:/users/ykerlogot/source/repos/CasseBrique/CasseBrique/src/assets/fonts/Roboto-Regular.ttf", 50, sf::Color::White));
+    GameManager::spawnGameObject(new Score("0", {50, 50}, "C:/users/ykerlogot/source/repos/CasseBrique/CasseBrique/src/assets/fonts/Roboto-Regular.ttf", 30, sf::Color::White));
 
+    sf::Texture tex;
+    tex.loadFromFile("C:/users/ykerlogot/source/repos/CasseBrique/CasseBrique/src/assets/images/red.png");
+
+    sf::Sprite sprite;
+    sprite.setTexture(tex);
+    sprite.setTextureRect(sf::IntRect(0, 0, 616, 614)); 
 
 
     sf::Clock clock;
@@ -70,8 +74,9 @@ int main(int argc, char** argv)
         GameManager::update(deltaTime.asSeconds());
 
         //DISPLAY 
-        GameManager::render();
-        GameManager::renderText();
+        //GameManager::render();
+        window.draw(sprite);
+        window.display();
     }
 
     return 0;

@@ -1,18 +1,30 @@
 #include "Text.h"
 #include <SFML/Graphics.hpp>
-#include <iostream>
 
-Text::Text(const char* text, sf::Vector2f position, const char* font, int size, sf::Color color)
+Text::Text(const char* text, sf::Vector2f position, const char* font, int size, sf::Color color) : GameObject(position.x, position.y, size, size)
 {
 	this->font = new sf::Font();
 	this->font->loadFromFile(font);
 
 	this->string = new sf::String(text);
 	this->text = new sf::Text(*this->string, *this->font, (unsigned int)size);
-	this->text->setPosition(position);        
+
+	this->drawable = this->text;
+	this->transformable = this->text;
+
+	this->text->setPosition(position);   
+	this->text->setFillColor(color);
+
 }
 
-void Text::updateText(const char* text)
+Text::~Text()
+{
+	delete this->font;
+	delete this->string;
+	delete this->text;
+}
+
+void Text::updateText(std::string text)
 {
 	this->string = new sf::String(text);
 	this->text->setString(*this->string);

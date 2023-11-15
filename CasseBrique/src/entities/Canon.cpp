@@ -14,9 +14,13 @@
 Canon::Canon(float x, float y, float width, float height) : GameObject(x, y, width, height)
 {
 	this->shape = new sf::RectangleShape(sf::Vector2f(width, height));
+	this->drawable = this->shape;
+	this->transformable = this->shape;
 	this->shape->setPosition(x, y);
 	this->shape->setOrigin(width / 2, height);
-	GameManager::eventManager.subscribe<Canon>(CLOSE_WINDOW, this, &Canon::launchBall);
+
+	GameManager::eventManager.subscribe<Canon>(MOUSE_LEFT_PRESSED, this, &Canon::launchBall);
+	GameManager::eventManager.subscribe<Canon>(BALL_DESTROYED, this, &Canon::toggleShootCondition); 
 	//GameManager::spawnGameObject(new Ball(x, y, width, orientation.x, orientation.y, sf::Color::Cyan));
 }
 
@@ -30,6 +34,8 @@ Canon::Canon(float x, float y, float width, float height, sf::Color color) : Can
 
 Canon::~Canon()
 {
+	std::cout << "Canon Destroyed" << std::endl;
+	delete this->shape;
 }
 
 void Canon::update(float deltaTime)
@@ -53,13 +59,17 @@ void Canon::update(float deltaTime)
 
 int Canon::launchBall()
 {
-	sf::Vector2f normalizeOrientation = Maths::normalize(this->orientation);
-	GameManager::spawnRigidBody(new Ball(
-		this->shape->getPosition().x - normalizeOrientation.x * size.y, 
-		this->shape->getPosition().y - normalizeOrientation.y * size.y, 
-		30.f, 
-		-normalizeOrientation.x, 
-		-normalizeOrientation.y, sf::Color::Magenta));
-	GameManager::eventManager.unsubscribe<Canon>(CLOSE_WINDOW, this, &Canon::launchBall);
+	if (canShoot)
+	{
+		this->canShoot = !this->canShoot;
+		sf::Vector2f normalizeOrientation = Maths::normalize(this->orientation);
+		GameManager::spawnRigidBody(new Ball(
+			this->shape->getPosition().x - normalizeOrientation.x * size.y,
+			this->shape->getPosition().y - normalizeOrientation.y * size.y,
+			30.f,
+			-normalizeOrientation.x,
+			-normalizeOrientation.y, sf::Color::Magenta));
+	}
+	//GameManager::eventManager.unsubscribe<Canon>(CLOSE_WINDOW, this, &Canon::launchBall);
 	return 0;
 }

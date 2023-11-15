@@ -5,7 +5,7 @@ class MovingObject : public GameObject
 {
 public:
 	MovingObject(float x, float y, float width, float height, float orientationX, float orientationY);
-	~MovingObject() {};
+	~MovingObject() override {};
 
 	virtual void update(float deltaTime) override;
 	virtual void onCollision(sf::Vector2f collisionSide) override {};
