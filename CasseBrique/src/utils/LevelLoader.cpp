@@ -26,7 +26,6 @@ void LevelLoader::load(std::string fileName)
 			while ((pos = line.find(delimiter)) != std::string::npos)
 			{
 				parameters.push_back((line.substr(0, pos)).c_str());
-				std::cout << parameters.size() << std::endl;
 				line.erase(0, pos + delimiter.length()); 
 			} 
 

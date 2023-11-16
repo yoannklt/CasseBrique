@@ -11,17 +11,9 @@ GameObject::GameObject(float x, float y, float width, float height)
 	this->size.y = height;
 }
 
-float GameObject::methodName() {
-	return 0.f;
-}
-
-float GameObject::methodNameTwo() {
-	return 0.f;
-}
-
 GameObject::~GameObject()
 {
-	std::cout << "GameObject Destroyed" << std::endl;
+	// std::cout << "GameObject Destroyed" << std::endl;
 }
 
 void GameObject::setPosition(float xpos, float ypos)

@@ -48,8 +48,9 @@ Brick::Brick(float x, float y, float width, float height) : GameObject(x, y, wid
 
 Brick::~Brick()
 {
-	std::cout << "Brick Destroyed" << std::endl;
+	// std::cout << "Brick Destroyed" << std::endl;
 	delete this->shape;
+	delete this->sprite;
 }
 
 void Brick::update(float deltaTime)
@@ -59,13 +60,14 @@ void Brick::update(float deltaTime)
 void Brick::onCollision(sf::Vector2f collisionSide)
 {
 	this->health -= 1;
+	this->imageKey = this->maxHealth - this->health;
 	if (this->health == 0)
 	{
 		GameManager::killGameObject(this);
 		GameManager::eventManager.trigger(BRICK_DESTROY);
+		return;
 	}
 
-	this->imageKey = this->maxHealth - this->health;
 	this->sprite->setTexture(*TextureManager::getTexture(std::to_string(imageKey) + ".jpg"));
 	*this->colorValue = 255 * this->health / this->maxHealth;
 

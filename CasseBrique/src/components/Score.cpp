@@ -13,7 +13,7 @@ Score::Score(const char* text, sf::Vector2f position, const char* font, int size
 int Score::incrementScoreOnBrickDestroyed()
 {
 	this->score += 40;
-	this->updateText(std::to_string(this->score));
+	this->updateText("Score: " + std::to_string(this->score));
 
 	return 0;
 }
@@ -21,7 +21,7 @@ int Score::incrementScoreOnBrickDestroyed()
 int Score::incrementScoreOnBrickTouched()
 {
 	this->score += 10;
-	this->updateText(std::to_string(this->score));
+	this->updateText("Score: " + std::to_string(this->score));
 
 	return 0;
 }

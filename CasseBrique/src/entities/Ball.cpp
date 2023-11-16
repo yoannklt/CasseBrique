@@ -6,10 +6,10 @@
 Ball::Ball(float x, float y, float diameter, float orientationX, float orientationY) : MovingObject(x, y, diameter, diameter, orientationX, orientationY)
 {
 	this->shape = new sf::CircleShape(diameter / 2);
-	this->drawable = this->shape;  //new sf::CircleShape(diameter/2); new sf::RectangleShape({ diameter, diameter });
-	this->transformable = this->shape;  //new sf::CircleShape(diameter/2); new sf::RectangleShape({ diameter, diameter });
-	this->transformable->setPosition(x, y);
+	this->drawable = this->shape;  
+	this->transformable = this->shape;  
 	this->transformable->setOrigin(diameter/2, diameter/2);
+	this->setPosition(x - this->transformable->getOrigin().x, y - this->transformable->getOrigin().y);
 }
 
 Ball::Ball(float x, float y, float radius, float orientationX, float orientationY, sf::Color color) : Ball(x,  y,  radius, orientationX, orientationY)
@@ -19,7 +19,7 @@ Ball::Ball(float x, float y, float radius, float orientationX, float orientation
 
 Ball::~Ball()
 {
-	std::cout << "Ball Destroyed" << std::endl;
+	// std::cout << "Ball Destroyed" << std::endl;
 	GameManager::eventManager.trigger(BALL_DESTROYED);
 	delete this->shape;
 }
