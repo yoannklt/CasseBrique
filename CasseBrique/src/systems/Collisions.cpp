@@ -141,3 +141,17 @@ private:
 std::vector<sf::Vector2f> vertexList;
 }
 */
+
+
+/*
+
+//check if the two segments are intersecting
+
+	float numerator = (pointA.x - pointC.x)*(pointC.y - pointD.y)-(pointA.y - pointC.y)*(pointC.x - pointD.x);
+	float denominator = (pointA.x - pointB.x)*(pointC.y - pointD.y)-(pointA.y - pointB.y)*(pointC.x - pointD.x);
+	float t = numerator/denominator;
+
+	Point intersection;
+	constructPoint(&intersection, pointA.x + t*(pointB.x - pointA.x), pointA.y + t*(pointB.y - pointA.y));
+
+*/
