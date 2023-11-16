@@ -2,6 +2,7 @@
 
 #include <SFML/System/Vector2.hpp>
 #include <vector>
+#include <string>
 
 namespace sf 
 {
@@ -32,6 +33,8 @@ public:
 	static void setWindow(Window* window);
 	static Window* getWindow();
 	static EventsManager eventManager;
+
+	static void loadLevel(std::string fileName);
 
 
 private:

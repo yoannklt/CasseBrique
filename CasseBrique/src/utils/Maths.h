@@ -10,4 +10,6 @@ namespace Maths
 	sf::Vector2f normalize(sf::Vector2f vector);
 	float convertRadiansToDegrees(float radianAngle);
 
+	sf::Vector2f getAngle(sf::Vector2f vectorOne, sf::Vector2f vectorTwo);
+
 }

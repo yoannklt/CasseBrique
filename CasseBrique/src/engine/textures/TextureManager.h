@@ -12,9 +12,10 @@ namespace sf
 class TextureManager
 {
 public:
-	//static sf::Texture* getTexture(const std::string fileName);	
+	static sf::Texture* getTexture(const std::string& fileName);	
+	static void destroyTexture();
 
 private:
-	//static std::unordered_map<std::string, sf::Texture*> textures;
+	static std::unordered_map<std::string, sf::Texture*> textures;
 };
 

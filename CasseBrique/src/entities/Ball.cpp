@@ -35,7 +35,7 @@ void Ball::bounce(int side)
 void Ball::update(float deltaTime)
 {
 	
-	if (position.x + size.x >= 640 or position.x <= 0)
+	if (position.x + size.x >= 700 or position.x <= 0)
 	{
 		orientation.x = -orientation.x;
 	}

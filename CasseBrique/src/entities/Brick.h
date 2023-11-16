@@ -1,10 +1,13 @@
 #pragma once
 
+#include <SFML/Config.hpp>
 #include "GameObject.h"
 
 namespace sf
 {
 	class RectangleShape;
+	class Color;
+	class Sprite;
 }
 
 
@@ -20,5 +23,10 @@ public:
 	sf::RectangleShape* shape;
 
 private:
-	int health = 5;
+	int health = 4;
+	int maxHealth = health;
+	sf::Color* color;
+	sf::Uint8* colorValue;
+	sf::Sprite* sprite;
+	int imageKey;
 };

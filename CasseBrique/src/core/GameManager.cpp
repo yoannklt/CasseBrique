@@ -9,6 +9,7 @@
 #include "../components/Text.h"
 
 #include "../engine/rendering/Window.h"
+#include "../utils/LevelLoader.h"
 
 std::vector<GameObject*> GameManager::gameObjects;
 std::vector<GameObject*> GameManager::gameObjectsToDelete;
@@ -123,5 +124,10 @@ void GameManager::setWindow(Window* window)
 Window* GameManager::getWindow()
 {
     return GameManager::window;
+}
+
+void GameManager::loadLevel(std::string fileName)
+{
+    LevelLoader::load(fileName);    
 }
 

@@ -130,6 +130,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\utils\LevelLoader.cpp" />
     <ClCompile Include="src\components\Score.cpp" />
     <ClCompile Include="src\components\Text.cpp" />
     <ClCompile Include="src\engine\rendering\Window.cpp" />
@@ -146,6 +147,7 @@
     <ClCompile Include="src\engine\textures\TextureManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\utils\LevelLoader.h" />
     <ClInclude Include="src\components\Score.h" />
     <ClInclude Include="src\engine\events\EventNames.h" />
     <ClInclude Include="src\engine\rendering\Window.h" />

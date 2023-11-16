@@ -4,14 +4,46 @@
 #include <cmath>
 #include "../core/GameManager.h"
 #include "../engine/events/EventsManager.h"
+#include "../engine/textures/TextureManager.h"
 #include <SFML/Graphics.hpp>
 
 Brick::Brick(float x, float y, float width, float height) : GameObject(x, y, width, height)
 {
+	// SHAPE / DRAWABLE / TRANSFORMABLE INITIALIZATION
 	this->shape = new sf::RectangleShape({ width, height });
-	this->drawable = this->shape;  //new sf::CircleShape(diameter/2); new sf::RectangleShape({ diameter, diameter });
 	this->transformable = this->shape;  //new sf::CircleShape(diameter/2); new sf::RectangleShape({ diameter, diameter });
 	this->transformable->setPosition(x, y);
+
+	// SPRITE SHIT
+	this->sprite = new sf::Sprite(*TextureManager::getTexture("0.jpg"));
+	this->sprite->setScale(this->size.x / this->sprite->getGlobalBounds().width, this->size.y / this->sprite->getGlobalBounds().height);
+	this->drawable = this->sprite;  //new sf::CircleShape(diameter/2); new sf::RectangleShape({ diameter, diameter });
+
+	this->sprite->setPosition(this->position);
+
+	// RANDOM COLOR SYSTEM
+	int randomColorValue = std::rand() % 3 + 1;
+	switch (randomColorValue)
+	{
+	case 1:
+		this->color = new sf::Color({ 255 , 0, 0 });
+		this->colorValue = &this->color->r;
+		break;
+
+	case 2:
+		this->color = new sf::Color({ 0, 255, 0 });
+		this->colorValue = &this->color->g;
+		break;
+
+	case 3:
+		this->color = new sf::Color({ 0, 0, 255 });
+		this->colorValue = &this->color->b;
+		break;
+
+	default:
+		break;
+	}
+	this->shape->setFillColor(*color);
 }
 
 Brick::~Brick()
@@ -27,32 +59,16 @@ void Brick::update(float deltaTime)
 void Brick::onCollision(sf::Vector2f collisionSide)
 {
 	this->health -= 1;
-	GameManager::eventManager.trigger(BRICK_TOUCH);
-	switch (this->health)
+	if (this->health == 0)
 	{
-	case 4:
-		this->shape->setFillColor(sf::Color::Green);
-		break;
-
-	case 3:
-		this->shape->setFillColor(sf::Color::Blue);
-		break;
-
-	case 2:
-		this->shape->setFillColor(sf::Color::Magenta);
-		break;
-
-	case 1:
-		this->shape->setFillColor(sf::Color::Red);
-		break;
-
-	case 0:
-		GameManager::eventManager.trigger(BRICK_DESTROY); 
 		GameManager::killGameObject(this);
-		break;
-
-	default:
-		this->shape->setFillColor(sf::Color::White);
-		break;
+		GameManager::eventManager.trigger(BRICK_DESTROY);
 	}
+
+	this->imageKey = this->maxHealth - this->health;
+	this->sprite->setTexture(*TextureManager::getTexture(std::to_string(imageKey) + ".jpg"));
+	*this->colorValue = 255 * this->health / this->maxHealth;
+
+	GameManager::eventManager.trigger(BRICK_TOUCH);
+	this->shape->setFillColor(*color);
 }
