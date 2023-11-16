@@ -33,3 +33,7 @@ float Maths::convertRadiansToDegrees(float radianAngle)
 	float degreeAngle = radianAngle * 180 / 3.14159265358979323846;
 	return degreeAngle;
 }
+
+bool Maths::haveSameSign(int x, int y) {
+	return ((x ^ y) >= 0);
+}
