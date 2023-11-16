@@ -5,67 +5,54 @@
 #include "../entities/GameObject.h"
 #include "../entities/MovingObject.h"
 #include "../entities/Canon.h"
+#include "../entities/Brick.h"
 #include "../engine/events/EventsManager.h"
 #include "../components/Text.h"
 
 #include "../engine/rendering/Window.h"
 
-std::vector<GameObject*> GameManager::gameObjects;
-std::vector<GameObject*> GameManager::gameObjectsToDelete;
-Window* GameManager::window;
-sf::Mouse* GameManager::mouse;
-Collisions GameManager::collisions;
-EventsManager GameManager::eventManager;
 
-void GameManager::render()
-{
-	GameManager::window->getWindow()->clear();
-	for (int i = 0; i < GameManager::gameObjects.size(); i++)
-	{
-		GameManager::window->getWindow()->draw(*gameObjects[i]->getDrawable());
-	}
-	GameManager::window->getWindow()->display();
+
+void GameManager::InitBrickBreaker() {
+    //sf::RenderWindow window(sf::VideoMode::getFullscreenModes()[0], "BrickBreaker", sf::Style::Fullscreen);
+    //sf::RenderWindow window(sf::VideoMode(640, 480), "BrickBreaker", sf::Style::Fullscreen);
+    //sf::RenderWindow window(sf::VideoMode(640, 480), "SFML");
+    GameManager::spawnGameObject(new Canon(320.f, 240.f, 50.f, 100.f));
+    GameManager::spawnStaticBody(new Brick(10.f, 10.f, 30.f, 460.f));
+    GameManager::spawnStaticBody(new Brick(600.f, 10.f, 30.f, 460.f));
+    GameManager::spawnStaticBody(new Brick(50.f, 10.f, 540.f, 30.f));
 }
 
+void GameManager::render()
+{    
+	GameManager::window->clearWindow();
+	for (int i = 0; i < GameManager::gameObjects.size(); i++)
+	{
+		GameManager::window->drawOnWindow(gameObjects[i]->getDrawable());
+	}
+	GameManager::window->display();
+}
 
-void GameManager::update(float deltaTime)
+void GameManager::update()
 {
-    //Canon* canon = (Canon*)GameManager::gameObjects[0];
-
-    /*
-    sf::Event oEvent;
-    while (GameManager::window->pollEvent(oEvent))
-    {
-        switch (oEvent.type)
-        {
-        case sf::Event::Closed:
-            GameManager::window->close();
-            break;
-
-        case sf::Event::MouseButtonPressed:
-            switch (oEvent.mouseButton.button)
-            {
-            case sf::Mouse::Left:
-                
-                canon->launchBall();
-                //std::cout << "Left click detected" << std::endl;
-                break;
-
-            default:
-                break;
-            }
-
-        default:
-            break;
-        }
-    }*/
+    GameManager::updateDeltaTime();
     GameManager::eventManager.handleSFMLEvents();
-    GameManager::collisions.checkCollisions();
+
+    //CALL GAME OBJECTS UPDATE SCRIPTS
     for (int i = 0; i < GameManager::gameObjects.size(); i++)
     {
         gameObjects[i]->update(deltaTime);
     }
+
+    //CALL SYSTEMS
+    GameManager::collisions.checkCollisions();
+
     deleteGameObjectsAtEndOfUpdate();
+}
+
+void GameManager::updateDeltaTime() {
+    GameManager::deltaTime = GameManager::clock.getElapsedTime().asSeconds();
+    GameManager::clock.restart();
 }
 
 void GameManager::spawnGameObject(GameObject* gameObject)
@@ -109,15 +96,9 @@ void GameManager::registerRigidBody(MovingObject* rigidBody) {
     GameManager::collisions.registerRigidBody(rigidBody);
 }
 
-sf::Vector2i GameManager::getMousePosition()
+void GameManager::bindWindow(Window* window)
 {
-	sf::Vector2i mousePosition = GameManager::mouse->getPosition(*GameManager::window->getWindow());
-	return mousePosition;
-}
-
-void GameManager::setWindow(Window* window)
-{
-	GameManager::window = window;
+    GameManager::window = window;
 }
 
 Window* GameManager::getWindow()
@@ -125,3 +106,17 @@ Window* GameManager::getWindow()
     return GameManager::window;
 }
 
+sf::Vector2i GameManager::getMousePosition()
+{
+	sf::Vector2i mousePosition = GameManager::mouse->getPosition(*GameManager::window->getSFMLObject());
+	return mousePosition;
+}
+
+std::vector<GameObject*> GameManager::gameObjects;
+std::vector<GameObject*> GameManager::gameObjectsToDelete;
+Window* GameManager::window;
+sf::Mouse* GameManager::mouse;
+Collisions GameManager::collisions;
+EventsManager GameManager::eventManager;
+sf::Clock GameManager::clock;
+float GameManager::deltaTime;

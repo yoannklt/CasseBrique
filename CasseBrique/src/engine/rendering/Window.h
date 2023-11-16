@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML/Graphics/RenderWindow.hpp>
+#include <SFML/Graphics/Drawable.hpp>
 
 
 /// <summary>
@@ -10,7 +11,10 @@ public:
 	Window(int width, int height, const char* title = "New Project");
 	~Window();
 	int closeWindow();
-	inline sf::RenderWindow* getWindow() { return &window; };
+	int clearWindow();
+	int drawOnWindow(sf::Drawable* drawable);
+	int display();
+	inline sf::RenderWindow* getSFMLObject() { return &window; };
 
 private:
 	sf::RenderWindow window;

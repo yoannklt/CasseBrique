@@ -15,7 +15,7 @@ EventsManager::~EventsManager()
 
 void EventsManager::handleSFMLEvents()
 {
-    while (GameManager::getWindow()->getWindow()->pollEvent(this->event))
+    while (GameManager::getWindow()->getSFMLObject()->pollEvent(this->event))
     {
         this->trigger((this->*(EventsManager::SFMLMapper[this->event.type]))());
     }

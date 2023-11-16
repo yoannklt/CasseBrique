@@ -3,6 +3,7 @@
 #include "../entities/MovingObject.h"
 #include <iostream>
 #include <SFML/System/Vector2.hpp>
+#include "../utils/Maths.h"
 
 Collisions::Collisions() 
 {
@@ -66,11 +67,20 @@ CollisionData Collisions::checkAABBCollision(MovingObject* movingObject, GameObj
 	return { sf::Vector2f(0.f, 0.f), 2000.f }; // second value should be replaced with the physical step + 1 (so that it's an impossible step)
 }
 
-CollisionData Collisions::checkOBBCollision(MovingObject* movingObject, GameObject* staticObject)
+/*CollisionData Collisions::checkAABBCollisionWithPhysicalStep(MovingObject* movingObject, GameObject* staticObject)
 {
+	float movingOrientationX = movingObject->getOrientation().x;
+	float movingOrientationY = movingObject->getOrientation().y;
 
-	return { sf::Vector2f(0.f, 0.f), 2000.f }; // second value should be replaced with the physical step + 1 (so that it's an impossible step)
-}
+	float movingX = movingObject->getX() * (movingOrientationX < 0) + movingObject->getXMax() * (movingOrientationX > 0);
+	float movingY = movingObject->getY() * (movingOrientationY < 0) + movingObject->getYMax() * (movingOrientationY > 0);
+
+	float staticX = staticObject->getX() * (movingOrientationX > 0) + staticObject->getXMax() * (movingOrientationX < 0);
+	float staticY = staticObject->getY() * (movingOrientationY > 0) + staticObject->getYMax() * (movingOrientationY < 0);
+
+	sf::Vector2f intersection = Maths::getIntersectionBetweenSegments(sf::Vector2f{ movingX, movingY }, sf::Vector2f vertexB, sf::Vector2f vertexC, sf::Vector2f vertexD)
+
+}*/
 
 void Collisions::checkCollisions()
 {
