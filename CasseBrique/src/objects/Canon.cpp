@@ -52,7 +52,7 @@ void Canon::update(float deltaTime)
 	this->orientation.x = xPoint - mousePosition.x;
 	this->orientation.y = yPoint - mousePosition.y;
 
-	if (true)//(degreeAngle < 90 and degreeAngle > -90)
+	if (degreeAngle < 90 and degreeAngle > -90)
 	{
 		this->shape->setRotation(-degreeAngle);
 	}

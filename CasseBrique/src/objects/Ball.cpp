@@ -43,6 +43,7 @@ void Ball::update(float deltaTime)
 
 	if (position.y <= 0)
 	{
+		this->setPosition(position.x, 0);
 		orientation.y = -orientation.y;
 	} 
 
