@@ -2,25 +2,23 @@
 #include "../systems/Collisions.h"
 
 #include <SFML/Graphics.hpp>
-#include "../entities/GameObject.h"
-#include "../entities/MovingObject.h"
-#include "../entities/Canon.h"
-#include "../entities/Brick.h"
+#include "../objects/GameObject.h"
+#include "../objects/MovingObject.h"
+#include "../objects/Canon.h"
+#include "../objects/Brick.h"
 #include "../engine/events/EventsManager.h"
-#include "../components/Text.h"
+#include "../objects/Text.h"
 
 #include "../engine/rendering/Window.h"
 
 
 
 void GameManager::InitBrickBreaker() {
-    //sf::RenderWindow window(sf::VideoMode::getFullscreenModes()[0], "BrickBreaker", sf::Style::Fullscreen);
-    //sf::RenderWindow window(sf::VideoMode(640, 480), "BrickBreaker", sf::Style::Fullscreen);
-    //sf::RenderWindow window(sf::VideoMode(640, 480), "SFML");
     GameManager::spawnGameObject(new Canon(320.f, 240.f, 50.f, 100.f));
     GameManager::spawnStaticBody(new Brick(10.f, 10.f, 30.f, 460.f));
     GameManager::spawnStaticBody(new Brick(600.f, 10.f, 30.f, 460.f));
-    GameManager::spawnStaticBody(new Brick(50.f, 10.f, 540.f, 30.f));
+    GameManager::spawnStaticBody(new Brick(50.f, 10.f, 220.f, 30.f));
+    GameManager::spawnStaticBody(new Brick(280.f, 10.f, 220.f, 30.f));
 }
 
 void GameManager::render()

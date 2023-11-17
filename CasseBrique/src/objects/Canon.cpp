@@ -4,7 +4,6 @@
 #include "../engine/events/EventsManager.h"
 #include "../engine/events/EventNames.h"
 
-#include <iostream>
 #include <cmath>
 #include <SFML/Graphics.hpp>
 
@@ -35,7 +34,6 @@ Canon::Canon(float x, float y, float width, float height, sf::Color color) : Can
 
 Canon::~Canon()
 {
-	std::cout << "Canon Destroyed" << std::endl;
 	delete this->shape;
 }
 

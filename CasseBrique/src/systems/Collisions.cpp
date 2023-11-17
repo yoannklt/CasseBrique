@@ -1,18 +1,9 @@
 #include "Collisions.h"
-#include "../entities/GameObject.h"
-#include "../entities/MovingObject.h"
+#include "../objects/GameObject.h"
+#include "../objects/MovingObject.h"
 #include <iostream>
 #include <SFML/System/Vector2.hpp>
 #include "../utils/Maths.h"
-
-Collisions::Collisions() 
-{
-
-}
-
-Collisions::~Collisions()
-{
-}
 
 void Collisions::registerStaticBody(GameObject* staticBody) {
 	this->staticBodies.push_back(staticBody);
@@ -32,7 +23,7 @@ void Collisions::unregisterRigidBody(MovingObject* rigidBody)
 	this->rigidBodies.erase(std::remove(this->rigidBodies.begin(), this->rigidBodies.end(), rigidBody), this->rigidBodies.end());
 }
 
-CollisionData Collisions::checkAABBCollision(MovingObject* movingObject, GameObject* staticObject)
+CollisionData* Collisions::checkAABBCollision(MovingObject* movingObject, GameObject* staticObject)
 {
 	// checks if there is no collision and then takes the inverse as condition
 	if( !(movingObject->getXMax() < staticObject->getX() || movingObject->getX() > staticObject-> getXMax()
@@ -57,14 +48,14 @@ CollisionData Collisions::checkAABBCollision(MovingObject* movingObject, GameObj
 			((newPosY < movingY) && (movingOrientationY > 0))
 		) {
 			//vertical collision
-			return { sf::Vector2f(0.f, 1.f), moveCoefficient };
+			return new CollisionData{ sf::Vector2f(0.f, 1.f), moveCoefficient };
 		}
 		else {
 			//horizontal collision
-			return { sf::Vector2f(1.f, 0.f), (movingY - staticY) / movingOrientationY };
+			return new CollisionData { sf::Vector2f(1.f, 0.f), (movingY - staticY) / movingOrientationY };
 		}
 	}
-	return { sf::Vector2f(0.f, 0.f), 2000.f }; // second value should be replaced with the physical step + 1 (so that it's an impossible step)
+	return new CollisionData { sf::Vector2f(0.f, 0.f), 20000.f }; // second value should be replaced with the physical step + 1 (so that it's an impossible step)
 }
 
 /*CollisionData Collisions::checkAABBCollisionWithPhysicalStep(MovingObject* movingObject, GameObject* staticObject)
@@ -88,17 +79,29 @@ void Collisions::checkCollisions()
 		MovingObject* rigidBody = rigidBodies[i];
 		for (int j = 0; j < this->staticBodies.size(); ++j) {
 			GameObject* staticBody = staticBodies[j];
-			CollisionData collisionData = checkAABBCollision(rigidBody, staticBody);
-			if (collisionData.overMoveCoefficient != 2000) { //means no colisions were detected
-				
-				rigidBody->onCollision(collisionData.collisionSide); //triggerEvent on Specific
-				rigidBody->setPosition( //fixing the moving object position out of the object it collided with
-					collisionData.overMoveCoefficient * rigidBody->getOrientation().x + rigidBody->getPosition().x,
-					collisionData.overMoveCoefficient * rigidBody->getOrientation().y + rigidBody->getPosition().y
-				);
-				staticBody->onCollision(collisionData.collisionSide);
+			CollisionData* collisionData = checkAABBCollision(rigidBody, staticBody);
+			if (collisionData->overMoveCoefficient != 20000) { //means no colisions were detected
+				for (int k = 0; k < collisionsList.size(); ++k) {
+					if ((collisionData->collisionSide.x != collisionsList[k]->collisionSide.x) && (collisionData->collisionSide.y != collisionsList[k]->collisionSide.y) && (collisionData->overMoveCoefficient != collisionsList[k]->overMoveCoefficient)) {
+						collisionsList.push_back(collisionData);
+					}
+				}
+				if (collisionsList.size() == 0) {
+					collisionsList.push_back(collisionData);
+				}
+				staticBody->onCollision(collisionData->collisionSide);
 			}
 		}
+		for (CollisionData* collisionData : this->collisionsList) {
+			rigidBody->onCollision(collisionData->collisionSide); //triggerEvent on Specific
+			rigidBody->setPosition( //fixing the moving object position out of the object it collided with
+				collisionData->overMoveCoefficient * rigidBody->getOrientation().x + rigidBody->getPosition().x,
+				collisionData->overMoveCoefficient * rigidBody->getOrientation().y + rigidBody->getPosition().y
+			);
+			//delete collisionData;
+			
+		}
+		this->collisionsList.clear();
 	}
 }
 

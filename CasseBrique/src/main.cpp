@@ -1,13 +1,5 @@
-#include <iostream>
-#include <SFML/Graphics.hpp>
 #include "core/GameManager.h"
-#include "entities/MovingObject.h"
-#include "entities/Canon.h"
-#include "entities/Brick.h"
-#include "engine/events/EventsManager.h"
-#include "components/Score.h"
 #include "engine/rendering/Window.h"
-
 
 int main(int argc, char** argv)
 {

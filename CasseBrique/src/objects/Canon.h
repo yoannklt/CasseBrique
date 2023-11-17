@@ -29,6 +29,5 @@ protected:
 	sf::RectangleShape* shape;
 
 private:
-	sf::Vector2f orientation;
 	bool canShoot = true;
 };

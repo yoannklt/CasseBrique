@@ -29,3 +29,8 @@ int Window::display() {
 	this->window.display();
 	return 0;
 }
+
+
+//sf::RenderWindow window(sf::VideoMode::getFullscreenModes()[0], "BrickBreaker", sf::Style::Fullscreen);
+//sf::RenderWindow window(sf::VideoMode(640, 480), "BrickBreaker", sf::Style::Fullscreen);
+//sf::RenderWindow window(sf::VideoMode(640, 480), "SFML");

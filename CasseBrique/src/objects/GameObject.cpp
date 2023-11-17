@@ -1,7 +1,6 @@
 #include "GameObject.h"
 #include <cstdlib>
 #include <SFML/Graphics.hpp>
-#include <iostream>
 
 GameObject::GameObject(float x, float y, float width, float height)
 {
@@ -21,7 +20,6 @@ float GameObject::methodNameTwo() {
 
 GameObject::~GameObject()
 {
-	std::cout << "GameObject Destroyed" << std::endl;
 }
 
 void GameObject::setPosition(float xpos, float ypos)

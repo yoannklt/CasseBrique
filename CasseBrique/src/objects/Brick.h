@@ -7,7 +7,6 @@ namespace sf
 	class RectangleShape;
 }
 
-
 class Brick : public GameObject
 {
 public:

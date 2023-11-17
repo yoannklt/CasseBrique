@@ -1,5 +1,4 @@
-#ifndef EVENT_NAMES_H
-#define EVENT_NAMES_H
+#pragma once
 
 typedef enum EventNames {
 
@@ -259,5 +258,3 @@ typedef enum EventNames {
 	
 	EVENT_NAMES_COUNT
 } EventName;
-
-#endif EVENT_NAMES_H

@@ -1,6 +1,7 @@
 #include "EventsManager.h"
 #include "../../core/GameManager.h"
 #include "../rendering/Window.h"
+#include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 #include <iostream>
 

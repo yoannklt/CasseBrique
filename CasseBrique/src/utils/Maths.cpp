@@ -1,5 +1,4 @@
 #include "Maths.h"
-#include <corecrt_math.h>
 #include <cmath>
 
 #define FLT_MAX          3.402823466e+38F
