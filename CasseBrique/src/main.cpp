@@ -5,7 +5,7 @@
 int main(int argc, char** argv)
 {
     std::srand(static_cast<unsigned int>(std::time(0)));
-    Window window(640, 480, "BrickBreaker");
+    Window window(700, 480, "BrickBreaker");
     GameManager::bindWindow(&window);
     GameManager::InitBrickBreaker();
 

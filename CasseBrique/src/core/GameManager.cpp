@@ -8,6 +8,7 @@
 #include "../objects/Brick.h"
 #include "../engine/events/EventsManager.h"
 #include "../objects/Text.h"
+#include "../objects/Score.h"
 
 #include "../engine/rendering/Window.h"
 #include "../utils/LevelLoader.h"
@@ -15,11 +16,14 @@
 
 
 void GameManager::InitBrickBreaker() {
-    GameManager::spawnGameObject(new Canon(320.f, 240.f, 50.f, 100.f));
+    GameManager::loadLevel("levelOne.txt");
+    GameManager::spawnGameObject(new Score("Score: 0", { 50, 400 }, "data/assets/graphics/fonts/Roboto-Regular.ttf", 40, sf::Color::White));
+
+    /*GameManager::spawnGameObject(new Canon(320.f, 240.f, 50.f, 100.f));
     GameManager::spawnStaticBody(new Brick(10.f, 10.f, 30.f, 460.f));
     GameManager::spawnStaticBody(new Brick(600.f, 10.f, 30.f, 460.f));
     GameManager::spawnStaticBody(new Brick(50.f, 10.f, 220.f, 30.f));
-    GameManager::spawnStaticBody(new Brick(280.f, 10.f, 220.f, 30.f));
+    GameManager::spawnStaticBody(new Brick(280.f, 10.f, 220.f, 30.f));*/
 }
 
 void GameManager::render()
@@ -109,6 +113,11 @@ sf::Vector2i GameManager::getMousePosition()
 {
 	sf::Vector2i mousePosition = GameManager::mouse->getPosition(*GameManager::window->getSFMLObject());
 	return mousePosition;
+}
+
+void GameManager::loadLevel(std::string fileName)
+{
+    LevelLoader::load(fileName);
 }
 
 std::vector<GameObject*> GameManager::gameObjects;

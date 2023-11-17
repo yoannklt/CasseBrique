@@ -1,7 +1,7 @@
 #include "LevelLoader.h"
 #include "../core/GameManager.h"
-#include "../entities/Brick.h"
-#include "../entities/Canon.h"
+#include "../objects/Brick.h"
+#include "../objects/Canon.h"
 
 std::unordered_map<std::string, GameObjectTypes> LevelLoader::map = {
 	{"Brick", BRICK},
@@ -12,7 +12,7 @@ void LevelLoader::load(std::string fileName)
 {
 	std::string line;
 	std::string delimiter = "|";
-	std::ifstream levelFile("assets/levels/" + fileName);
+	std::ifstream levelFile("data/levels/" + fileName);
 
 	size_t pos = 0;
 

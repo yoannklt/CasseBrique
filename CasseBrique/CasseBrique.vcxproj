@@ -131,7 +131,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\utils\LevelLoader.cpp" />
-
     <ClCompile Include="src\objects\Score.cpp" />
     <ClCompile Include="src\objects\Text.cpp" />
     <ClCompile Include="src\engine\rendering\Window.cpp" />
@@ -146,9 +145,10 @@
     <ClCompile Include="src\systems\Collisions.cpp" />
     <ClCompile Include="src\utils\Maths.cpp" />
     <ClCompile Include="src\engine\textures\TextureManager.cpp" />
-    <ClInclude Include="src\objects\Score.h" />
-    <ClInclude Include="src\utils\LevelLoader.h" />
+  </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\utils\LevelLoader.h" />
+    <ClInclude Include="src\objects\Score.h" />
     <ClInclude Include="src\engine\events\EventNames.h" />
     <ClInclude Include="src\engine\rendering\Window.h" />
     <ClInclude Include="src\objects\Canon.h" />
@@ -158,6 +158,7 @@
     <ClInclude Include="src\core\AbstractGameManager.h" />
     <ClInclude Include="src\objects\Ball.h" />
     <ClInclude Include="src\objects\Brick.h" />
+    <ClInclude Include="src\objects\Entity.h" />
     <ClInclude Include="src\objects\GameObject.h" />
     <ClInclude Include="src\objects\MovingObject.h" />
     <ClInclude Include="src\systems\Collisions.h" />

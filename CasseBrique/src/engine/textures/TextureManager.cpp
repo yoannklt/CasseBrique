@@ -12,7 +12,7 @@ sf::Texture* TextureManager::getTexture(const std::string& fileName)
 	}
 
 	sf::Texture* texture = new sf::Texture();
-	texture->loadFromFile("assets/images/" +fileName);
+	texture->loadFromFile("data/assets/graphics/images/" +fileName);
 	textures[fileName] = texture;
 
 	return texture;
