@@ -60,6 +60,59 @@ CollisionData* Collisions::checkAABBCollision(MovingObject* movingObject, GameOb
 
 /*CollisionData Collisions::checkAABBCollisionWithPhysicalStep(MovingObject* movingObject, GameObject* staticObject)
 {
+
+	if( (movingObject->getXMax() < staticObject->getX() || movingObject->getX() > staticObject-> getXMax()
+		||
+		movingObject->getYMax() < staticObject->getY() || movingObject->getY() > staticObject->getYMax()) 
+	) {
+		
+		float deltaMove = movingObject->getSpeed() * GameManager::deltaTime;
+
+		float movingOrientationX = movingObject->getOrientation().x;
+		float movingOrientationY = movingObject->getOrientation().y;
+
+		float oppositOrientationX = -movingOrientationX;
+		float oppositOrientationY = -movingOrientationY;
+
+		//shared means the X/Y value present on two of the 3 necessary vertexes.
+		float movingSharedX = movingObject->getX() * (movingOrientationX < 0) + movingObject->getXMax() * (movingOrientationX > 0);
+		float movingSharedY = movingObject->getY() * (movingOrientationY < 0) + movingObject->getYMax() * (movingOrientationY > 0);
+
+		float movingUnsharedX = movingObject->getX() * (movingOrientationX > 0) + movingObject->getXMax() * (movingOrientationX < 0);
+		float movingUnsharedY = movingObject->getY() * (movingOrientationY > 0) + movingObject->getYMax() * (movingOrientationY < 0);
+
+		sf::Vector2f movingVertexesList[3] = {
+			sf::Vector2f{ movingSharedX, movingUnsharedY },
+			sf::Vector2f{ movingSharedX, movingSharedY },
+			sf::Vector2f{ movingUnsharedX, movingSharedY }
+		};
+
+		float deltaMoveX = movingOrientationX * deltaMove;
+		float deltaMoveY = movingOrientationY * deltaMove;
+
+		sf::Vector2f previousPositionMovingVertexesList[3] = {
+			sf::Vector2f{ movingSharedX - deltaMoveX, movingUnsharedY - deltaMoveY },
+			sf::Vector2f{ movingSharedX - deltaMoveX, movingSharedY - deltaMoveY },
+			sf::Vector2f{ movingUnsharedX - deltaMoveX, movingSharedY - deltaMoveY }
+		};
+
+		float staticY[2] = { staticObject->getY(), staticObject->getYMax() };
+		bool staticYIndex = movingOrientationY > 0;
+		sf::Vector2f staticVertexA = sf::Vector2f{ staticObject->getX(), staticY[staticYIndex] };
+		sf::Vector2f staticVertexB = sf::Vector2f{ staticObject->getXMax(), staticY[!staticYIndex] };
+
+
+		for (int i = 0; i < 3; i++) {
+			intersection = getIntersectionBetweenSegments(previousPositionMovingVertexesList[i], movingVertexesList[i], staticVertexA, staticVertexB)
+		}
+
+		//compare intersections between each others to see which one is the farthest and should be used as collision point
+
+	} else {
+		checkAABBCollision(movingObject, staticObject)
+	}
+
+
 	float movingOrientationX = movingObject->getOrientation().x;
 	float movingOrientationY = movingObject->getOrientation().y;
 
