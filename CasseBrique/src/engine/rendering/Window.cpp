@@ -15,3 +15,22 @@ int Window::closeWindow() {
 	return 0;
 }
 
+int Window::clearWindow() {
+	this->window.clear();
+	return 0;
+}
+
+int Window::drawOnWindow(sf::Drawable* drawable) {
+	this->window.draw(*drawable);
+	return 0;
+}
+
+int Window::display() {
+	this->window.display();
+	return 0;
+}
+
+
+//sf::RenderWindow window(sf::VideoMode::getFullscreenModes()[0], "BrickBreaker", sf::Style::Fullscreen);
+//sf::RenderWindow window(sf::VideoMode(640, 480), "BrickBreaker", sf::Style::Fullscreen);
+//sf::RenderWindow window(sf::VideoMode(640, 480), "SFML");

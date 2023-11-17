@@ -1,17 +1,9 @@
 #include "Collisions.h"
-#include "../entities/GameObject.h"
-#include "../entities/MovingObject.h"
+#include "../objects/GameObject.h"
+#include "../objects/MovingObject.h"
 #include <iostream>
 #include <SFML/System/Vector2.hpp>
-
-Collisions::Collisions() 
-{
-
-}
-
-Collisions::~Collisions()
-{
-}
+#include "../utils/Maths.h"
 
 void Collisions::registerStaticBody(GameObject* staticBody) {
 	this->staticBodies.push_back(staticBody);
@@ -31,7 +23,7 @@ void Collisions::unregisterRigidBody(MovingObject* rigidBody)
 	this->rigidBodies.erase(std::remove(this->rigidBodies.begin(), this->rigidBodies.end(), rigidBody), this->rigidBodies.end());
 }
 
-CollisionData Collisions::checkAABBCollision(MovingObject* movingObject, GameObject* staticObject)
+CollisionData* Collisions::checkAABBCollision(MovingObject* movingObject, GameObject* staticObject)
 {
 	// checks if there is no collision and then takes the inverse as condition
 	if( !(movingObject->getXMax() < staticObject->getX() || movingObject->getX() > staticObject-> getXMax()
@@ -56,21 +48,30 @@ CollisionData Collisions::checkAABBCollision(MovingObject* movingObject, GameObj
 			((newPosY < movingY) && (movingOrientationY > 0))
 		) {
 			//vertical collision
-			return { sf::Vector2f(0.f, 1.f), moveCoefficient };
+			return new CollisionData{ sf::Vector2f(0.f, 1.f), moveCoefficient };
 		}
 		else {
 			//horizontal collision
-			return { sf::Vector2f(1.f, 0.f), (movingY - staticY) / movingOrientationY };
+			return new CollisionData { sf::Vector2f(1.f, 0.f), (movingY - staticY) / movingOrientationY };
 		}
 	}
-	return { sf::Vector2f(0.f, 0.f), 2000.f }; // second value should be replaced with the physical step + 1 (so that it's an impossible step)
+	return new CollisionData { sf::Vector2f(0.f, 0.f), 20000.f }; // second value should be replaced with the physical step + 1 (so that it's an impossible step)
 }
 
-CollisionData Collisions::checkOBBCollision(MovingObject* movingObject, GameObject* staticObject)
+/*CollisionData Collisions::checkAABBCollisionWithPhysicalStep(MovingObject* movingObject, GameObject* staticObject)
 {
+	float movingOrientationX = movingObject->getOrientation().x;
+	float movingOrientationY = movingObject->getOrientation().y;
 
-	return { sf::Vector2f(0.f, 0.f), 2000.f }; // second value should be replaced with the physical step + 1 (so that it's an impossible step)
-}
+	float movingX = movingObject->getX() * (movingOrientationX < 0) + movingObject->getXMax() * (movingOrientationX > 0);
+	float movingY = movingObject->getY() * (movingOrientationY < 0) + movingObject->getYMax() * (movingOrientationY > 0);
+
+	float staticX = staticObject->getX() * (movingOrientationX > 0) + staticObject->getXMax() * (movingOrientationX < 0);
+	float staticY = staticObject->getY() * (movingOrientationY > 0) + staticObject->getYMax() * (movingOrientationY < 0);
+
+	sf::Vector2f intersection = Maths::getIntersectionBetweenSegments(sf::Vector2f{ movingX, movingY }, sf::Vector2f vertexB, sf::Vector2f vertexC, sf::Vector2f vertexD)
+
+}*/
 
 void Collisions::checkCollisions()
 {
@@ -78,17 +79,29 @@ void Collisions::checkCollisions()
 		MovingObject* rigidBody = rigidBodies[i];
 		for (int j = 0; j < this->staticBodies.size(); ++j) {
 			GameObject* staticBody = staticBodies[j];
-			CollisionData collisionData = checkAABBCollision(rigidBody, staticBody);
-			if (collisionData.overMoveCoefficient != 2000) { //means no colisions were detected
-				
-				rigidBody->onCollision(collisionData.collisionSide); //triggerEvent on Specific
-				rigidBody->setPosition( //fixing the moving object position out of the object it collided with
-					collisionData.overMoveCoefficient * rigidBody->getOrientation().x + rigidBody->getPosition().x,
-					collisionData.overMoveCoefficient * rigidBody->getOrientation().y + rigidBody->getPosition().y
-				);
-				staticBody->onCollision(collisionData.collisionSide);
+			CollisionData* collisionData = checkAABBCollision(rigidBody, staticBody);
+			if (collisionData->overMoveCoefficient != 20000) { //means no colisions were detected
+				for (int k = 0; k < collisionsList.size(); ++k) {
+					if ((collisionData->collisionSide.x != collisionsList[k]->collisionSide.x) && (collisionData->collisionSide.y != collisionsList[k]->collisionSide.y) && (collisionData->overMoveCoefficient != collisionsList[k]->overMoveCoefficient)) {
+						collisionsList.push_back(collisionData);
+					}
+				}
+				if (collisionsList.size() == 0) {
+					collisionsList.push_back(collisionData);
+				}
+				staticBody->onCollision(collisionData->collisionSide);
 			}
 		}
+		for (CollisionData* collisionData : this->collisionsList) {
+			rigidBody->onCollision(collisionData->collisionSide); //triggerEvent on Specific
+			rigidBody->setPosition( //fixing the moving object position out of the object it collided with
+				collisionData->overMoveCoefficient * rigidBody->getOrientation().x + rigidBody->getPosition().x,
+				collisionData->overMoveCoefficient * rigidBody->getOrientation().y + rigidBody->getPosition().y
+			);
+			//delete collisionData;
+			
+		}
+		this->collisionsList.clear();
 	}
 }
 
@@ -140,4 +153,18 @@ class Collider {
 private:
 std::vector<sf::Vector2f> vertexList;
 }
+*/
+
+
+/*
+
+//check if the two segments are intersecting
+
+	float numerator = (pointA.x - pointC.x)*(pointC.y - pointD.y)-(pointA.y - pointC.y)*(pointC.x - pointD.x);
+	float denominator = (pointA.x - pointB.x)*(pointC.y - pointD.y)-(pointA.y - pointB.y)*(pointC.x - pointD.x);
+	float t = numerator/denominator;
+
+	Point intersection;
+	constructPoint(&intersection, pointA.x + t*(pointB.x - pointA.x), pointA.y + t*(pointB.y - pointA.y));
+
 */

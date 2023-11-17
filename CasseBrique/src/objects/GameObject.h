@@ -4,7 +4,6 @@
 
 namespace sf 
 {
-	class Shape;
 	class Transformable;
 	class Drawable;
 }
@@ -24,6 +23,8 @@ public:
 	virtual void onCollision(sf::Vector2f collisionSide) {};
 	sf::Vector2f getPosition();
 	void setPosition(float xpos, float ypos);
+	inline sf::Vector2f getOrientation() { return orientation; };
+	inline void setOrientation(float orientationX, float orientationY) { orientation = { orientationX, orientationY }; };
 	float getX();
 	float getY();
 	float getXMax();
@@ -33,6 +34,7 @@ public:
 	{
 		return this->size.y;
 	};
+
 	inline sf::Drawable* getDrawable() { return this->drawable; };
 	inline sf::Transformable* getTransformable() { return this->transformable; };
 	//to move to math namespace
@@ -43,6 +45,5 @@ protected:
 	sf::Transformable* transformable;
 	sf::Vector2f position;
 	sf::Vector2f size;
-
-private:
+	sf::Vector2f orientation;
 };

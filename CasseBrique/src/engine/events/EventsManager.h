@@ -2,15 +2,13 @@
 #include <unordered_map>
 #include <vector>
 #include <functional>
-#include <SFML/Graphics.hpp>
-#include <iostream>
+#include <SFML/Window/Keyboard.hpp>
+#include <SFML/Window/Mouse.hpp>
+#include <SFML/Window/Event.hpp>
 #include "EventNames.h"
 
 class VoidClass {};
 
-namespace sf {
-	class Event;
-}
 
 typedef enum EventCallbackReturns {
 	SUCCESS = 0,
@@ -19,7 +17,7 @@ typedef enum EventCallbackReturns {
 	EVENT_CALLBACK_RETURNS_AMOUNT
 } EventCallbackReturn;
 
-using EventCallback = std::function<int()>; // a = subscribe(std::bind(functionPointer, instanceAdress)) //std::function<int()> callback = std::bind(functionPointer, instanceAdress)
+using EventCallback = std::function<int()>;
 
 struct EventCallbackData
 {

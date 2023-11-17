@@ -2,7 +2,7 @@
 
 #include <SFML/System/Vector2.hpp>
 #include "SFML/Graphics/Text.hpp"
-#include "../entities/GameObject.h"
+#include "../objects/GameObject.h"
 #include <string>
 
 namespace sf

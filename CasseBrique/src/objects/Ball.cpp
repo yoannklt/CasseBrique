@@ -1,6 +1,7 @@
 #include "Ball.h"
 #include <SFML/Graphics.hpp>
 #include "../core/GameManager.h"
+#include "../engine/rendering/Window.h"
 #include "../engine/events/EventsManager.h"
 
 Ball::Ball(float x, float y, float diameter, float orientationX, float orientationY) : MovingObject(x, y, diameter, diameter, orientationX, orientationY)
@@ -9,7 +10,7 @@ Ball::Ball(float x, float y, float diameter, float orientationX, float orientati
 	this->drawable = this->shape;  
 	this->transformable = this->shape;  
 	this->transformable->setOrigin(diameter/2, diameter/2);
-	this->setPosition(x - this->transformable->getOrigin().x, y - this->transformable->getOrigin().y);
+	this->setPosition(x - this->transformable->getOrigin().x, y - this->transformable->getOrigin().y);	
 }
 
 Ball::Ball(float x, float y, float radius, float orientationX, float orientationY, sf::Color color) : Ball(x,  y,  radius, orientationX, orientationY)
@@ -35,19 +36,19 @@ void Ball::bounce(int side)
 void Ball::update(float deltaTime)
 {
 	
-	if (position.x + size.x >= 700 or position.x <= 0)
+	if (position.x + size.x >= GameManager::getWindow()->getSFMLObject()->getSize().x or position.x <= 0)
 	{
 		orientation.x = -orientation.x;
 	}
 
-	if (position.y + size.y >= 480 or position.y <= 0)
+	if (position.y <= 0)
 	{
 		orientation.y = -orientation.y;
 	} 
 
 	MovingObject::update(deltaTime);
 
-	if (position.y + size.y >= 480) {  
+	if (position.y >= GameManager::getWindow()->getSFMLObject()->getSize().y) {
 		GameManager::killGameObject(this);
 	}
 

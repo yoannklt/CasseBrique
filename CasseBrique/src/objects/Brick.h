@@ -10,7 +10,6 @@ namespace sf
 	class Sprite;
 }
 
-
 class Brick : public GameObject
 {
 public:

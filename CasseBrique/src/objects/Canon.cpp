@@ -4,7 +4,6 @@
 #include "../engine/events/EventsManager.h"
 #include "../engine/events/EventNames.h"
 
-#include <iostream>
 #include <cmath>
 #include <SFML/Graphics.hpp>
 
@@ -66,7 +65,7 @@ int Canon::launchBall()
 		this->canShoot = !this->canShoot;
 		sf::Vector2f normalizeOrientation = Maths::normalize(this->orientation);
 		GameManager::spawnRigidBody(new Ball(
-			this->shape->getPosition().x - normalizeOrientation.x * size.x,
+			this->shape->getPosition().x - normalizeOrientation.x * size.y,
 			this->shape->getPosition().y - normalizeOrientation.y * size.y,
 			30.f,
 			-normalizeOrientation.x,

@@ -1,6 +1,7 @@
 #include "EventsManager.h"
 #include "../../core/GameManager.h"
 #include "../rendering/Window.h"
+#include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
@@ -15,7 +16,7 @@ EventsManager::~EventsManager()
 
 void EventsManager::handleSFMLEvents()
 {
-    while (GameManager::getWindow()->getWindow()->pollEvent(this->event))
+    while (GameManager::getWindow()->getSFMLObject()->pollEvent(this->event))
     {
         this->trigger((this->*(EventsManager::SFMLMapper[this->event.type]))());
     }

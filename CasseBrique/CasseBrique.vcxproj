@@ -131,36 +131,35 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\utils\LevelLoader.cpp" />
-    <ClCompile Include="src\components\Score.cpp" />
-    <ClCompile Include="src\components\Text.cpp" />
+
+    <ClCompile Include="src\objects\Score.cpp" />
+    <ClCompile Include="src\objects\Text.cpp" />
     <ClCompile Include="src\engine\rendering\Window.cpp" />
-    <ClCompile Include="src\entities\Canon.cpp" />
+    <ClCompile Include="src\objects\Canon.cpp" />
     <ClCompile Include="src\core\GameManager.cpp" />
     <ClCompile Include="src\engine\events\EventsManager.cpp" />
     <ClCompile Include="src\main.cpp" />
-    <ClCompile Include="src\entities\Ball.cpp" />
-    <ClCompile Include="src\entities\Brick.cpp" />
-    <ClCompile Include="src\entities\GameObject.cpp" />
-    <ClCompile Include="src\entities\MovingObject.cpp" />
+    <ClCompile Include="src\objects\Ball.cpp" />
+    <ClCompile Include="src\objects\Brick.cpp" />
+    <ClCompile Include="src\objects\GameObject.cpp" />
+    <ClCompile Include="src\objects\MovingObject.cpp" />
     <ClCompile Include="src\systems\Collisions.cpp" />
     <ClCompile Include="src\utils\Maths.cpp" />
     <ClCompile Include="src\engine\textures\TextureManager.cpp" />
-  </ItemGroup>
-  <ItemGroup>
+    <ClInclude Include="src\objects\Score.h" />
     <ClInclude Include="src\utils\LevelLoader.h" />
-    <ClInclude Include="src\components\Score.h" />
+  <ItemGroup>
     <ClInclude Include="src\engine\events\EventNames.h" />
     <ClInclude Include="src\engine\rendering\Window.h" />
-    <ClInclude Include="src\entities\Canon.h" />
-    <ClInclude Include="src\components\Text.h" />
+    <ClInclude Include="src\objects\Canon.h" />
+    <ClInclude Include="src\objects\Text.h" />
     <ClInclude Include="src\core\GameManager.h" />
     <ClInclude Include="src\engine\events\EventsManager.h" />
     <ClInclude Include="src\core\AbstractGameManager.h" />
-    <ClInclude Include="src\entities\Ball.h" />
-    <ClInclude Include="src\entities\Brick.h" />
-    <ClInclude Include="src\entities\Entity.h" />
-    <ClInclude Include="src\entities\GameObject.h" />
-    <ClInclude Include="src\entities\MovingObject.h" />
+    <ClInclude Include="src\objects\Ball.h" />
+    <ClInclude Include="src\objects\Brick.h" />
+    <ClInclude Include="src\objects\GameObject.h" />
+    <ClInclude Include="src\objects\MovingObject.h" />
     <ClInclude Include="src\systems\Collisions.h" />
     <ClInclude Include="src\utils\Maths.h" />
     <ClInclude Include="src\engine\textures\TextureManager.h" />
